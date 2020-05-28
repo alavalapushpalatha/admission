@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'admission';
+  title = 'Admission-Predictor';
+  imageSrc:string;
+  ngOnInit()
+  {
+    this.imageSrc = "../assets/images/unnamed.jpg"
+  }
 }
