@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Admission-Predictor';
+  imageSrc:string;
+  ngOnInit()
+  {
+    this.imageSrc = "../assets/images/unnamed.jpg"
+  }
 }

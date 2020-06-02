@@ -6,17 +6,69 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+import { HomenavComponent } from './homenav/homenav.component';
+import { FooternavComponent } from './footernav/footernav.component';
+import { CorouselbarComponent } from './corouselbar/corouselbar.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ViewCollegeComponent } from './view-college/view-college.component';
+import { AddCollegeComponent } from './add-college/add-college.component';
+import { ViewStudentsComponent } from './view-students/view-students.component';
+import { ViewFeedbackComponent } from './view-feedback/view-feedback.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { PredictedCollegesComponent } from './predicted-colleges/predicted-colleges.component';
+import { AllCollegesComponent } from './all-colleges/all-colleges.component';
+import { GiveFeedbackComponent } from './give-feedback/give-feedback.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserFooterComponent } from './user-footer/user-footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IgxCardModule } from 'igniteui-angular';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    UserNavbarComponent
+    UserNavbarComponent,
+    HomenavComponent,
+    FooternavComponent,
+    CorouselbarComponent,
+    UserLoginComponent,
+    UserRegistrationComponent,
+    AdminLoginComponent,
+    ViewCollegeComponent,
+    AddCollegeComponent,
+    ViewStudentsComponent,
+    ViewFeedbackComponent,
+    AdminHomeComponent,
+    UserHomeComponent,
+    PredictedCollegesComponent,
+    AllCollegesComponent,
+    GiveFeedbackComponent,
+    UserProfileComponent,
+    UserFooterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    CommonModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule,
+    IgxCardModule 
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

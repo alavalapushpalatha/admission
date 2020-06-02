@@ -1,0 +1,204 @@
+
+<form #createForm="ngForm">
+  <app-navbar></app-navbar>
+  <div class="container">
+    <table align="center">
+
+
+      <tr class="form-group">
+        <th>College Code</th>
+        <td><input type="text" class="form-control" id="collegeCode" name="collegeCode" #collegeCode="ngModel"
+            [(ngModel)]="college.collegeCode" required placeholder="EX:RSR13" maxlength="10"></td>
+        <td [hidden]="collegeCode.valid || collegeCode.pristine" class="alert alert-danger">First 3 letters shoud be
+          Alphabates </td>
+      </tr>
+
+      <tr class="form-group">
+        <th>College Name</th>
+        <td><input type="text" class="form-control" id="collegeName" name="collegeName" #collegeName="ngModel"
+            [(ngModel)]="college.collegeName" required pattern="[a-zA-Z\s]{3,}"></td>
+        <td [hidden]="collegeName.valid || collegeName.pristine" class="alert alert-danger">Only Alphabates & Min 3
+          letters </td>
+      </tr>
+
+      <tr class="form-group">
+        <th>State</th>
+        <td><input type="text" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="college.state"
+            required pattern="[a-zA-Z\s]{3,}"></td>
+        <td [hidden]="state.valid || state.pristine" class="alert alert-danger">Only Alphabates & Min 3 letters </td>
+      </tr>
+
+      <tr class="form-group">
+        <th>City</th>
+        <td><input type="text" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="college.city"
+            required pattern="[a-zA-Z\s]{3,}"></td>
+        <td [hidden]="city.valid || city.pristine" class="alert alert-danger">Only Alphabates & Min 3 letters </td>
+      </tr>
+
+      <tr class="form-group">
+        <th>Address</th>
+        <td><input type="text" class="form-control" id="address" name="address" #address="ngModel"
+            [(ngModel)]="college.address" required pattern="[a-zA-Z\s]{3,}"></td>
+        <td [hidden]="address.valid || address.pristine" class="alert alert-danger">Only Alphabates & Min 3 letters
+        </td>
+      </tr>
+
+      <tr class="form-group">
+        <th>Contact Number</th>
+        <td><input type="text" class="form-control" id="contactNumber" name="contactNumber" #contactNumber="ngModel"
+            [(ngModel)]="college.contactNumber" required pattern="[a-zA-Z\s]{3,}"></td>
+        <td [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">Only Alphabates & Min 3
+          letters </td>
+      </tr>
+
+      <div  class="form-group" class="col">
+        <label>Choose Departments</label>
+      </div>
+      <div class="form-check" *ngFor="let dept of departmentList,let index=i">
+        <input type="checkbox" value="{{dept}}"  (change)="departmentChange($event)">
+        {{dept}} 
+      </div>
+      <div class="col" style="text-align:left">
+        <label>Cutoff</label>
+      </div>
+      <div class="form-check" *ngFor="let dept of selectedDepartment,let index=i">
+        {{dept}} 
+        <input type="number" name="cutoff" #cutoff="ngModel" (change)="cutoffChange($event)" class="form-control" ngModel required>
+     </div>
+
+     <div class="form-group" style="text-align:left">
+      <button type="submit" [disabled]="!createForm.valid" class="btn-info">Add</button>
+    </div>
+    <div *ngIf="showDiv" style="color:red;text-align:center;">
+      <br />
+      {{msg}}
+      {{errorMsg}}
+    </div>
+    </table>
+  </div>
+
+</form>
+
+<!-- <div class="m-5 myContent">
+    <div class="container">
+      <form #createForm="ngForm" style="background-color:beige;">
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <h2 style="text-align:center">Create</h2>
+            <h6 style="text-align:right;color:dimgrey;font-size:small">All fields are mandatory</h6>
+            <div class="form-group">
+              <div class="col" style="text-align:left">
+                <label>College Id</label>
+              </div>
+              <div class="col; input-group">
+                <input type="text" name="collegeId" #collegeId="ngModel" class="form-control" ngModel required>
+              </div>
+              <div *ngIf="collegeId.errors && (collegeId.dirty || collegeId.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!collegeId.errors.required">
+                  <p>&nbsp;College Id is mandatory</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col" style="text-align:left">
+                <label>College Name</label>
+              </div>
+              <div class="col; input-group">
+                <input type="text" name="collegeName" #collegeName="ngModel" class="form-control" ngModel required>
+              </div>
+              <div *ngIf="collegeName.errors && (collegeName.dirty || collegeName.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!collegeName.errors.required">
+                  <p>&nbsp;Name is mandatory</p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <div class="col" style="text-align:left">
+                <label>Address</label>
+              </div>
+              <div class="col; input-group">
+                <input type="text" name="address" #address="ngModel" class="form-control" ngModel required>
+              </div>
+              <div *ngIf="address.errors && (address.dirty || address.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!address.errors.required">
+                  <p>&nbsp;Address is mandatory</p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <div class="col" style="text-align:left">
+                <label>Location</label>
+              </div>
+              <div class="col; input-group">
+                <input type="text" name="location" #location="ngModel" class="form-control" ngModel required>
+              </div>
+              <div *ngIf="location.errors && (location.dirty || location.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!location.errors.required">
+                  <p>&nbsp;Location is mandatory</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col" style="text-align:left">
+                <label>City</label>
+              </div>
+              <div class="col; input-group">
+                <input type="text" name="city" #city="ngModel" class="form-control" ngModel required>
+              </div>
+              <div *ngIf="city.errors && (city.dirty || city.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!city.errors.required">
+                  <p>&nbsp;City is mandatory</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="col" style="text-align:left">
+                <label>Contact Number</label>
+              </div>
+              <div class="col; input-group">
+                <input type="text" name="contactNumber" #contactNumber="ngModel" class="form-control" ngModel required>
+              </div>
+              <div *ngIf="contactNumber.errors && (contactNumber.dirty || contactNumber.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!contactNumber.errors.required">
+                  <p>&nbsp;Contact Number is mandatory</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" style="text-align:left">
+              <label>Departments</label>
+            </div>
+            <div class="form-check " *ngFor="let dept of departmentList,let index=i">
+              <input type="checkbox" class="form-check-input" value="{{dept}}"   (change)="departmentChange($event)">
+               {{dept}}
+            </div> 
+            <div class="col" style="text-align:left">
+              <label>Previous Year Cutoff</label>
+            </div>
+            <div class="form-check" *ngFor="let dept of selectedDepartment,let index=i">
+               {{dept}}
+               <input type="number" name="cutoff" #cutoff="ngModel" (change)="cutoffChange($event)" class="form-control" ngModel required>
+            </div> 
+
+            <div class="form-group" style="text-align:left">
+              <button type="submit" [disabled]="!createForm.form.valid" class="btn-info">Submit</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+        <div *ngIf="showDiv" style="color:red;text-align:center;">
+          <br />
+          {{msg}}
+          {{errorMsg}}
+        </div>
+        </div>
+      </form>
+    </div>
+  </div> -->
+  <app-user-footer></app-user-footer>

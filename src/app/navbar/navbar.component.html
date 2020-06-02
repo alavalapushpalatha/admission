@@ -1,12 +1,12 @@
 <div id="navg">
     <nav class="navbar" class="navbar navbar-dark bg-dark mb-5">
-      <a class="navbar-brand" routerLink="" href="/#">Home</a>
+      <a class="navbar-brand" routerLink="/adminHome" href="/#">Home</a>
       <div class="navbar-expand mr-auto">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" routerLink="" href="#">View Colleges</a>
-          <a class="nav-item nav-link" routerLink="" href="#">Add Colleges</a>
-          <a class="nav-item nav-link" routerLink="" href="#">View Students</a>
-          <a class="nav-item nav-link" routerLink="" href="#">View Feedback</a>
+          <a class="navbar-brand" routerLink="/viewCollege" href="#">View Colleges</a>
+          <a class="navbar-brand" routerLink="/addCollege" href="#">Add Colleges</a>
+          <a class="navbar-brand" routerLink="/viewStudents" href="#">View Students</a>
+          <a class="navbar-brand" routerLink="/viewFeedback" href="#">View Feedback</a>
               
         </div>
       </div>
@@ -14,7 +14,7 @@
       <div class="dropdown">
         <button class="dropbtn">Mahesh</button>
         <div class="dropdown-content">
-          <a href="#">Logout</a>
+          <a href="#" (click)="logout()">Logout</a>
         </div>
       </div>
     </nav>
