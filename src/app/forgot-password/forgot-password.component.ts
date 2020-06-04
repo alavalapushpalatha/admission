@@ -19,7 +19,8 @@ export class ForgotPasswordComponent implements OnInit {
         if(this.status)
           {
             this.message="Valid user";
-              
+            this.router.navigate(['/login']);
+
           }
         else{
           this.message="InValid user";

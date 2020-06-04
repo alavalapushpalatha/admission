@@ -1,0 +1,18 @@
+body {
+    background-color: lighten(rgb(67, 119, 124), 30%);
+    box-sizing: border-box; 
+ }
+ 
+ .header {
+    background-color: darken(#398B93, 5%);
+    color: white;
+    font-size: 1.5em;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+ }
+ 
+ 
+ tr:nth-child(even) {background-color: #398B93,5%;}
+ tr:nth-child(odd) {background-color: #f2f2f2;}
+ 

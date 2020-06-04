@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CapService } from '../cap.service';
 import { Router } from '@angular/router';
 import { ICollege } from '../Model/college';
+import { College } from '../Model/Colleges';
 
 @Component({
   selector: 'app-view-college',
@@ -9,40 +10,48 @@ import { ICollege } from '../Model/college';
   styleUrls: ['./view-college.component.css']
 })
 export class ViewCollegeComponent implements OnInit {
-
+page=1;
   title:string = "Colleges List";
   search:any;
-  CollegesList:ICollege[];
+  // CollegesList:ICollege[];
+  samples:College[]=[];
+  CollegesList:College[]=[];
   Location:any=["Hyderabad","Warangal"];
   constructor(private service: CapService,private router: Router) { }
 
   ngOnInit( ): void {
-    this.CollegesList= this.service.getCollegesList();
+   this.service.viewColleges().subscribe(data=>this.CollegesList=data);
     
     //.subscribe(data=> this.CollegesList=data);
   }
 
-  deleteCollege(i){
-    this.CollegesList.splice(i,1);
-    alert("Deleted");
+  deleteCollege(college:College,i){
+    // this.CollegesList.splice(i,1);
+    console.log(college)
+    if(confirm('Are sure you want to delete College')){
+      this.service.deleteCollege(college.collegeCode).subscribe(data=>data);
+      window.location.reload();
+      alert("College Deleted Successfully");
+      }
+      this.router.navigate(['viewCollege']);
   }
   
 
   updateCollege(clg){
-   window.localStorage.setItem("collegeId", clg.collegeId.toString());
-    this.router.navigate(['update']);
+  //  window.localStorage.setItem("collegeId", clg.collegeId.toString());
+    this.router.navigate(['updateCollege']);
   }
 
   searchByLocation(event){
     console.log(event.target.value)
   }
 
-  idSort(){
-    console.log("sort is called");
-    this.CollegesList=this.CollegesList.sort(function(a,b){
-      return a.collegeId.localeCompare(b.collegeId)
-      })
-  }
+  // idSort(){
+  //   console.log("sort is called");
+  //   this.CollegesList=this.CollegesList.sort(function(a,b){
+  //     return a.collegeId.localeCompare(b.collegeId)
+  //     })
+  // }
   
   nameSort(){
     console.log("sort is called");
@@ -59,12 +68,12 @@ export class ViewCollegeComponent implements OnInit {
       })
   }
 
-  locationSort(){
-    console.log("sort is called");
-      this.CollegesList=this.CollegesList.sort(function(a,b){
-        return a.location.localeCompare(b.location)
-      })
-  }
+  // locationSort(){
+  //   console.log("sort is called");
+  //     this.CollegesList=this.CollegesList.sort(function(a,b){
+  //       return a.location.localeCompare(b.location)
+  //     })
+  // }
 
   citySort(){
     console.log("sort is called");

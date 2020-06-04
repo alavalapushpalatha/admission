@@ -31,6 +31,10 @@ import { UserFooterComponent } from './user-footer/user-footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCardModule } from 'igniteui-angular';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
+import { UpdateCollegeComponent } from './update-college/update-college.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     GiveFeedbackComponent,
     UserProfileComponent,
     UserFooterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    UpdateCollegeComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,16 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
-    IgxCardModule 
+    IgxCardModule ,
+    MatInputModule,
+    NgxPaginationModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatTableModule, 
+    MatSortModule,
+    MatPaginatorModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -16,6 +16,7 @@ import { AllCollegesComponent } from './all-colleges/all-colleges.component';
 import { GiveFeedbackComponent } from './give-feedback/give-feedback.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UpdateCollegeComponent } from './update-college/update-college.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,8 @@ const routes: Routes = [
   {path :'giveFeedback', component:GiveFeedbackComponent},
   {path :'userProfile', component:UserProfileComponent},
   {path :'forgotPassword', component:ForgotPasswordComponent},
+  {path :'updateCollege', component:UpdateCollegeComponent},
+
 
 
 ];

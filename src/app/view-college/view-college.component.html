@@ -1,60 +1,6 @@
 <app-navbar></app-navbar>
-<!--The content below is only a placeholder and can be replaced.--> 
-<!-- 
-<div class="jumbotron" style="text-align:center">
-    <h1>
-      {{ title }}
-    </h1>
-  </div>
 
-  <div class="input-group">
-    <h5>Search :&nbsp;</h5>
-    <input class="form-control-input" style="text-align:right;" align="center" type="text" [(ngModel)]="search">
-  </div>
- <br/>
-
-  <table class="table table-striped" align="center" >
-    <tr>
-      <th><button class="btn btn-default" (click)="idSort()">College Id</button> </th>
-      <th><button class="btn btn-default" (click)="nameSort()">College Name</button> </th>
-      <th><button class="btn btn-default" (click)="addressSort()">Address</button> </th>
-      <th><button class="btn btn-default" (click)="locationSort()">Location</button> </th>
-      <th><button class="btn btn-default" (click)="citySort()">City</button> </th>
-      <th><button class="btn btn-default" (click)="contactSort()">Contact Number</button> </th>
-      <th><button class="btn btn-default" >Departments</button> </th>
-      <th><button class="btn btn-default" >Actions</button> </th>
-    </tr>
-    <tr *ngFor="let clg of CollegesList | filter:search,let i =index" >
-      <td>{{clg.collegeId}}</td>
-      <td>{{clg.collegeName}}</td>
-      <td>{{clg.address}}</td>
-      <td>{{clg.location}}</td>
-      <td>{{clg.city}}</td>
-      <td>{{clg.contactNumber}}</td>
-      <td>
-        <table  class="table table-striped" align="center">
-          <tr>
-            <td>Branch</td>
-            <td>Cutoff</td>
-          </tr>
-          <tr *ngFor="let d of clg.departments">
-            <td>{{d.name}}</td>
-            <td>{{d.cutoff}}</td>
-          </tr>
-        </table>
-      </td>
- 
-        <td><button  class="btn btn-info" (click)="updateCollege(clg)">Update</button> </td>
-        <td><button  class="btn btn-danger" (click)="deleteCollege(i)">Delete</button> </td>
-   
-      
-    </tr>
-  </table>
- -->
-
-<!--The content below is only a placeholder and can be replaced.--> 
-
-<table background="../assets/images/98.jpg">
+<table style="width: 100%;" background="../assets/images/98.jpg">
   <div style="text-align:center">
     <h1>
       {{ title }}
@@ -69,17 +15,18 @@
   <table width=97%; border="0.5" >
   <tr class="row">
     <td class="column" *ngFor="let clg of CollegesList | filter:search,let i =index"  >
-  
       
   <igx-card>
     <div>
         <igx-card-header>
+            
+            <h3 igxCardHeaderTitle>College Code : {{clg.collegeCode}}</h3>
             <h3 igxCardHeaderTitle>College Name : {{clg.collegeName}}</h3>
-            <h5 igxCardHeaderSubtitle>College Code : {{clg.collegeId}}</h5>
-          
-            <p igxCardHeaderSubtitle>Address : {{clg.address}}&nbsp; , {{clg.location}}</p>
+           
+            <p igxCardHeaderSubtitle>Address : {{clg.address}}&nbsp; , {{clg.state}}</p>
             <h5 igxCardHeaderSubtitle>{{clg.city}}</h5>
             <p igxCardHeaderSubtitle>Contact No : {{clg.contactNumber}}</p>
+           
         </igx-card-header>
         <details>
           <summary><p  igxCardHeaderTitle>Departments - Cutoff</p></summary>
@@ -89,9 +36,9 @@
             <igx-card-header>
               <p  igxCardHeaderTitle>Departments - Cutoff</p> <hr>
             </igx-card-header> -->
-                 
-                  <div class="table table-striped"  *ngFor="let d of clg.departments">
-                    {{d.name}}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{{d.cutoff}} <br>
+            
+                  <div class="table table-striped"  *ngFor="let d of clg.branchCutoff | keyvalue">
+                    {{d.key}}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{{d.value}} <br>
                   </div>
         </igx-card-content>
     </details>
@@ -99,7 +46,7 @@
             <button igxButton="icon" style="text-align: center;" class="btn btn-info" igxRipple (click)="updateCollege(clg)" igxRippleCentered="true">
                 Update
             </button>&nbsp;&nbsp;&nbsp;
-            <button igxButton="icon" class="btn btn-danger" igxRipple (click)="deleteCollege(i)" igxRippleCentered="true">
+            <button igxButton="icon" class="btn btn-danger" igxRipple (click)="deleteCollege(clg,i)" igxRippleCentered="true">
                 Delete
             </button>
         
@@ -109,9 +56,9 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </td>
   </tr>
+  <p>Restricted size with rotation:</p>
+  <ngb-pagination [collectionSize]="120" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>   </table>
   </table>
-  </table>
-  
   
 
-  <app-user-footer></app-user-footer>
+  <!-- <app-user-footer></app-user-footer> -->

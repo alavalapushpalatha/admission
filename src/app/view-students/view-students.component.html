@@ -1,2 +1,107 @@
 <app-navbar></app-navbar>
-<p>view-students works!</p>
+ <div >
+    <form>
+
+      <form class="navbar-form navbar-center" action="/action_page.php">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder=" &#61442; Search" id="search" [(ngModel)]="searchText"
+            name="search">
+
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <br>
+      <br>
+
+      <table class="table table-striped" border="2"  cellspacing="2px" cellpadding="2px">
+
+        <tr>
+          <th>Phone Num</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>DOB</th>
+          <th>Hall Ticket No</th>
+          <th>Marks</th>
+          
+        </tr>
+
+        <tr id="userBooking" *ngFor="let c of userData | filter:searchText ;let i=index">
+          <td>{{c.phoneNo}}</td>
+          <td>{{c.name}}</td>
+          <td>{{c.email}}</td>
+          <td>{{c.gender}}</td>
+          <td>{{c.dob}}</td>
+          <td>{{c.hallTicketNumber}}</td>
+          <td>{{c.marks}}</td>
+          
+      </table>
+      <pagination-controls align="center" (pageChange)="pageChanged($event)"></pagination-controls>
+
+
+    </form> 
+  </div>
+
+
+
+
+
+  <!-- <div class="wrapper">
+    <h2 align="center"><strong>Students List</strong></h2> <br>
+        <div style="margin-left: 50px;" align="left" fxLayout fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40%">
+                <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+        </div>
+    
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    
+          <ng-container matColumnDef="phoneNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong> Phone Num </strong></th>
+            <td mat-cell *matCellDef="let element"> {{element.phoneNo}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Name</strong> </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Email</strong> </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Gender</strong> </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>DOB</strong> </th>
+            <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="hallTicketNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Hall Ticket No</strong> </th>
+            <td mat-cell *matCellDef="let element"> {{element.hallTicketNumber}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="marks">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Marks</strong> </th>
+            <td mat-cell *matCellDef="let element"> {{element.marks}} </td>
+          </ng-container>
+    
+         
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    
+        
+        <mat-paginator align="center" [pageSizeOptions]="[5, 10, 15,(userData.length)]" showFirstLastButtons>
+        </mat-paginator>
+        <br>    
+      </div> -->

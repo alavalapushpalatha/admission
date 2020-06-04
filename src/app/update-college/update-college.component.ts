@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { ICollege } from '../Model/college';
+import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { CapService } from '../cap.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { College } from '../Model/Colleges';
-import { Branches } from '../Model/Branches';
-import { ICollege } from '../Model/college';
 
 @Component({
-  selector: 'app-add-college',
-  templateUrl: './add-college.component.html',
-  styleUrls: ['./add-college.component.css']
+  selector: 'app-update-college',
+  templateUrl: './update-college.component.html',
+  styleUrls: ['./update-college.component.css']
 })
-export class AddCollegeComponent implements OnInit {
-
- college:College=new College();
- branchesList:Branches[]=[];
-
-branches:Branches=new Branches();
+export class UpdateCollegeComponent implements OnInit {
 
   status: string;
   errorMsg: string;
   msg: string;
   showDiv: boolean = false;
+  collegeId:any;
   selectedDepartment:any=[];
   selectedDepartmentCutoff:any=[];
-  departmentList=["CSE","EEE","ECE","IT","MECH","CIVIL"];
+  departmentList=[{ name :"EEE", selected :false},
+  { name :"CSE", selected :false},
+  { name :"MECH", selected :true},
+  { name :"CIVIL", selected :false},
+  { name :"IT", selected :false},
+  { name :"ECE", selected :false}
+];
   departments= [{ name :"", cutoff :0},
   { name :"", cutoff :0},
   { name :"", cutoff :0},
@@ -32,26 +32,14 @@ branches:Branches=new Branches();
   { name :"", cutoff :0},
   { name :"", cutoff :0}
 ];
-//  departments:IDepartment[];
 
-  constructor(private _collegeService: CapService, private router: Router) { }
+  college: ICollege;
+  editForm: FormGroup;
+  form: FormGroup;
 
-addColleges(){
-  
-  console.log(this.branches);
-  this.branchesList.push(this.branches);
-  console.log(this.branchesList);
-  console.log(this.college);
-  this._collegeService.addBranches(this.branchesList).subscribe();
-  this._collegeService.addCollege(this.college).subscribe(data=>{data
-    
-if(!data){
-alert("College Already added")
-}
-    });
+  constructor(private _collegeService: CapService, private router: Router,private formBuilder:  FormBuilder) {   }
 
-}
-
+  onSubmit() {  }
 
   departmentChange(event){
     let index = this.selectedDepartment.indexOf(event.target.value);
@@ -67,13 +55,13 @@ alert("College Already added")
     if(index==-1){
       this.selectedDepartmentCutoff.push(event.target.value);
     }else{
-      console.log(this.college)
-
       this.selectedDepartmentCutoff.splice(index,1);
     }
   }
 
-  submitCreateForm(form: NgForm) {
+  
+
+  submitUpdateForm(form: NgForm) {
     let ld=this.selectedDepartment.length;
     let i=0, empty = 6 - ld;
     for(;i<ld;++i){
@@ -92,16 +80,22 @@ alert("College Already added")
       contactNumber:form.value.contactNumber,
       departments:this.departments
     };
-    
-    this._collegeService.create(collegeObj).subscribe(data=>{
-      if(!data){
-       // this.errorMsg="College Already Added !!"
-       alert("College Already Added !!")
+    this._collegeService.updateCollege(collegeObj).subscribe(
+      responseCreateStatus=>{
+        this.status = responseCreateStatus;
+        if(this.status){
+          console.log("Successfully updated college");
+          this.msg= "Successfully updated college";
+        }
+      },
+      responseCreateError => {
+        this.errorMsg = responseCreateError;
       }
-    });
+    );
   }
   ngOnInit() {
-  }
-
+    this.collegeId = window.localStorage.getItem("collegeId");
+    this.college= this._collegeService.getCollgeById(this.collegeId);
+    }
 
 }

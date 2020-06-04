@@ -17,7 +17,8 @@ export class UserLoginComponent implements OnInit {
       if(this.status)
         {
           this.message="Valid user";
-            
+          this.router.navigate(['/userHome']);
+  
   
         }
       else{

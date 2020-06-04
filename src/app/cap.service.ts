@@ -5,6 +5,7 @@ import { Login } from './Model/Login';
 import { Router } from '@angular/router';
 import { ICollege } from './Model/college';
 import { College } from './Model/Colleges';
+import { Branches } from './Model/Branches';
  
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class CapService {
   loginUser(userCredentials:any){
     this.phoneNo = userCredentials.phone;
     let password = userCredentials.password;
-    
+    localStorage.setItem("mobile",this.phoneNo);
     return this.http.get("http://localhost:8080/login?phoneNo="+this.phoneNo+"&password="+password);
   }
   passwordReset(info:any){
@@ -67,9 +68,117 @@ export class CapService {
   
 
   
- addCollege(college:College){
+ addCollege(college:College):Observable<any>{
   return this.http.post(`${this.baseUrl}`+`/addCollege`,college);
  }
+ addBranches(branches:Branches[]):Observable<any>{
+  return this.http.post(`${this.baseUrl}`+`/addBranches`,branches);
+ }
+
+//  branchesList:Array<Branches>=[];
+
+ create(collegeObj:ICollege) : Observable<any>{ 
+  console.log(collegeObj);
+  let college=new College();
+  let branch=new Branches();
+  college.collegeCode=collegeObj.collegeId;;
+  college.collegeName=collegeObj.collegeName;
+  college.state=collegeObj.location;
+  college.city=collegeObj.city;
+  college.address=collegeObj.address;
+  college.contactNumber=collegeObj.contactNumber;
+  let  branchesList:Branches[]=[];
+ for(let i=0;i<collegeObj.departments.length;i++){
+  //  debugger
+  //  branch.name=null;
+  //  branch.cutOff=null;
+  branch.name= collegeObj.departments[i].name;
+  branch.cutOff= collegeObj.departments[i].cutoff;
+  console.log(branch.name);
+  console.log(branch.cutOff);
+  branchesList.push(branch);
+  console.log(branchesList);
+ }
+ console.log(college);
+ console.log(branchesList);
+
+ this.addBranches(branchesList).subscribe();
+
+ return this.http.post(`${this.baseUrl}`+`/addCollege`,college);
+}
+
+
+
+updateCollege(collegeObj:ICollege) : Observable<any>{ 
+  console.log(collegeObj);
+  let college=new College();
+  let branch=new Branches();
+  college.collegeCode=collegeObj.collegeId;;
+  college.collegeName=collegeObj.collegeName;
+  college.state=collegeObj.location;
+  college.city=collegeObj.city;
+  college.address=collegeObj.address;
+  college.contactNumber=collegeObj.contactNumber;
+  let  branchesList:Branches[]=[];
+ for(let i=0;i<collegeObj.departments.length;i++){
+  //  debugger
+  //  branch.name=null;
+  //  branch.cutOff=null;
+  branch.name= collegeObj.departments[i].name;
+  branch.cutOff= collegeObj.departments[i].cutoff;
+  console.log(branch.name);
+  console.log(branch.cutOff);
+  branchesList.push(branch);
+  console.log(branchesList);
+ }
+ console.log(college);
+ console.log(branchesList);
+
+ this.addBranches(branchesList).subscribe();
+
+ return this.http.put(`${this.baseUrl}`+`/updateCollege`,college);
+}
+
+
+deleteCollege(collegeCode:String){
+  return this.http.delete(`${this.baseUrl}`+`/deleteCollege/${collegeCode}`);
+}
+
+
+
+viewColleges():any{
+  return this.http.get("http://localhost:8080/getAllcolleges");
+}
+
+viewpredictedColleges(contactNumber:string,value:string){
+
+  return this.http.get(`${this.baseUrl}`+`/viewp/${parseInt(localStorage.getItem("mobile"))}/${value}`);
+ }
+
+
+ getfeedback()
+ {
+   return this.http.get("http://localhost:8080/getFeedback");
+ }
+ getuserData()
+ {
+  return this.http.get("http://localhost:8080/getUserDetails");
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -141,7 +250,152 @@ export class CapService {
           name:"MECH",
          cutoff:4558
         }
-    ]
+    ],
+    },{
+      collegeId:"1",
+      collegeName:"Anurag",
+      address:"Venkatapur",
+      location:"OU",
+      city:"Hyderabad",
+      contactNumber:"123456789",
+      departments:[
+        {
+          name:"IT", 
+          cutoff:345
+          },
+          {
+            name:"ECE",
+           cutoff:3223
+          },
+          {
+            name:"EEE",
+           cutoff:2231
+          },
+          {
+            name:"CIVIL",
+           cutoff:211
+          },
+          {
+            name:"MECH",
+           cutoff:4558
+          }
+      ]
+    },{
+      collegeId:"1",
+      collegeName:"Anurag",
+      address:"Venkatapur",
+      location:"OU",
+      city:"Hyderabad",
+      contactNumber:"123456789",
+      departments:[
+        {
+          name:"IT", 
+          cutoff:345
+          },
+          {
+            name:"ECE",
+           cutoff:3223
+          },
+          {
+            name:"EEE",
+           cutoff:2231
+          },
+          {
+            name:"CIVIL",
+           cutoff:211
+          },
+          {
+            name:"MECH",
+           cutoff:4558
+          }
+      ]
+    },{
+      collegeId:"1",
+      collegeName:"Anurag",
+      address:"Venkatapur",
+      location:"OU",
+      city:"Hyderabad",
+      contactNumber:"123456789",
+      departments:[
+        {
+          name:"IT", 
+          cutoff:345
+          },
+          {
+            name:"ECE",
+           cutoff:3223
+          },
+          {
+            name:"EEE",
+           cutoff:2231
+          },
+          {
+            name:"CIVIL",
+           cutoff:211
+          },
+          {
+            name:"MECH",
+           cutoff:4558
+          }
+      ]
+    },{
+      collegeId:"1",
+      collegeName:"Anurag",
+      address:"Venkatapur",
+      location:"OU",
+      city:"Hyderabad",
+      contactNumber:"123456789",
+      departments:[
+        {
+          name:"IT", 
+          cutoff:345
+          },
+          {
+            name:"ECE",
+           cutoff:3223
+          },
+          {
+            name:"EEE",
+           cutoff:2231
+          },
+          {
+            name:"CIVIL",
+           cutoff:211
+          },
+          {
+            name:"MECH",
+           cutoff:4558
+          }
+      ]
+    },{
+      collegeId:"1",
+      collegeName:"Anurag",
+      address:"Venkatapur",
+      location:"OU",
+      city:"Hyderabad",
+      contactNumber:"123456789",
+      departments:[
+        {
+          name:"IT", 
+          cutoff:345
+          },
+          {
+            name:"ECE",
+           cutoff:3223
+          },
+          {
+            name:"EEE",
+           cutoff:2231
+          },
+          {
+            name:"CIVIL",
+           cutoff:211
+          },
+          {
+            name:"MECH",
+           cutoff:4558
+          }
+      ]
     }
    ]
    ;
