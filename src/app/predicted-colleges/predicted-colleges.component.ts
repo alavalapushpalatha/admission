@@ -14,10 +14,18 @@ export class PredictedCollegesComponent implements OnInit {
   contact:string;
   a:boolean=true;
   b:boolean=false;
+  c:boolean=true;
+
+  newcontact: number;
   constructor(private service:CapService,private router:Router) { }
  
   ngOnInit(): void {
-    
+    this.contact= localStorage.getItem("mobile");
+    this.newcontact=parseInt(this.contact);
+    this.service.viewCollegesOnMarks(this.newcontact).subscribe((data:any)=>{
+      console.log(data);
+      this.samples=data;
+    })
   }
  
 selectBranch(branch){  
@@ -26,6 +34,7 @@ selectBranch(branch){
   this.contact= localStorage.getItem("mobile");
   console.log(this.contact);
   this.b=true;
+  this.c=false;
   this.service.viewpredictedColleges(this.contact,this.selectedBranch).subscribe((data:any)=>{
     console.log(data);
    

@@ -17,6 +17,8 @@ import { GiveFeedbackComponent } from './give-feedback/give-feedback.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UpdateCollegeComponent } from './update-college/update-college.component';
+import { AuthGaurdService } from './auth-gaurd.service';
+import { AdminGuard } from './admin.guard';
 
 
 const routes: Routes = [
@@ -26,18 +28,18 @@ const routes: Routes = [
   {path :'login', component:UserLoginComponent},
   {path :'adminLogin', component:AdminLoginComponent},
   {path :'register', component:UserRegistrationComponent},
-  {path :'viewCollege', component:ViewCollegeComponent},
-  {path :'addCollege', component:AddCollegeComponent},
-  {path :'viewStudents', component:ViewStudentsComponent},
-  {path :'viewFeedback', component:ViewFeedbackComponent},
-  {path :'adminHome', component:AdminHomeComponent},
-  {path :'userHome', component:UserHomeComponent},
-  {path :'predictedColleges', component:PredictedCollegesComponent},
-  {path :'allColleges', component:AllCollegesComponent},
-  {path :'giveFeedback', component:GiveFeedbackComponent},
-  {path :'userProfile', component:UserProfileComponent},
+  {path :'viewCollege', component:ViewCollegeComponent,canActivate:[AdminGuard]},
+  {path :'addCollege', component:AddCollegeComponent,canActivate:[AdminGuard]},
+  {path :'viewStudents', component:ViewStudentsComponent,canActivate:[AdminGuard]},
+  {path :'viewFeedback', component:ViewFeedbackComponent,canActivate:[AdminGuard]},
+  {path :'adminHome', component:AdminHomeComponent,canActivate:[AdminGuard]},
+  {path :'userHome', component:UserHomeComponent,canActivate:[AuthGaurdService]},
+  {path :'predictedColleges', component:PredictedCollegesComponent,canActivate:[AuthGaurdService]},
+  {path :'allColleges', component:AllCollegesComponent,canActivate:[AuthGaurdService]},
+  {path :'giveFeedback', component:GiveFeedbackComponent,canActivate:[AuthGaurdService]},
+  {path :'userProfile', component:UserProfileComponent,canActivate:[AuthGaurdService]},
   {path :'forgotPassword', component:ForgotPasswordComponent},
-  {path :'updateCollege', component:UpdateCollegeComponent},
+  {path :'updateCollege', component:UpdateCollegeComponent,canActivate:[AdminGuard]},
 
 
 

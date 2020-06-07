@@ -3,6 +3,8 @@ import { ICollege } from '../Model/college';
 import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { CapService } from '../cap.service';
 import { Router } from '@angular/router';
+import { College } from '../Model/Colleges';
+import { Branches } from '../Model/Branches';
 
 @Component({
   selector: 'app-update-college',
@@ -80,12 +82,15 @@ export class UpdateCollegeComponent implements OnInit {
       contactNumber:form.value.contactNumber,
       departments:this.departments
     };
+    if(confirm('Are sure you want to Update College')){
+     
+      
     this._collegeService.updateCollege(collegeObj).subscribe(
       responseCreateStatus=>{
         this.status = responseCreateStatus;
         if(this.status){
-          console.log("Successfully updated college");
-          this.msg= "Successfully updated college";
+          alert("College Updated Successfully");
+          this.router.navigate(['viewCollege']);
         }
       },
       responseCreateError => {
@@ -93,9 +98,14 @@ export class UpdateCollegeComponent implements OnInit {
       }
     );
   }
+}
+
+  collegeToUpdate:College=new College();
+  branchListToUpdate:Branches[]=[];
   ngOnInit() {
     this.collegeId = window.localStorage.getItem("collegeId");
-    this.college= this._collegeService.getCollgeById(this.collegeId);
+    // this.college= this._collegeService.getCollgeById(this.collegeId);
+    this.collegeToUpdate=this._collegeService.getCollege();
     }
 
 }

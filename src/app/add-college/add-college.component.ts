@@ -95,8 +95,11 @@ alert("College Already added")
     
     this._collegeService.create(collegeObj).subscribe(data=>{
       if(!data){
-       // this.errorMsg="College Already Added !!"
-       alert("College Already Added !!")
+       alert("College with Code "+ form.value.collegeId+" Already Added !!")
+      }
+      else{
+        alert("College Added Successfully");
+        this.router.navigate(['viewCollege']);
       }
     });
   }

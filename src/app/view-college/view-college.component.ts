@@ -21,8 +21,7 @@ page=1;
 
   ngOnInit( ): void {
    this.service.viewColleges().subscribe(data=>this.CollegesList=data);
-    
-    //.subscribe(data=> this.CollegesList=data);
+
   }
 
   deleteCollege(college:College,i){
@@ -39,6 +38,7 @@ page=1;
 
   updateCollege(clg){
   //  window.localStorage.setItem("collegeId", clg.collegeId.toString());
+  this.service.setCollegeToUpdate(clg);
     this.router.navigate(['updateCollege']);
   }
 
@@ -46,12 +46,12 @@ page=1;
     console.log(event.target.value)
   }
 
-  // idSort(){
-  //   console.log("sort is called");
-  //   this.CollegesList=this.CollegesList.sort(function(a,b){
-  //     return a.collegeId.localeCompare(b.collegeId)
-  //     })
-  // }
+  idSort(){
+    console.log("sort is called");
+    this.CollegesList=this.CollegesList.sort(function(a,b){
+      return a.collegeCode.localeCompare(b.collegeCode)
+      })
+  }
   
   nameSort(){
     console.log("sort is called");
@@ -68,12 +68,12 @@ page=1;
       })
   }
 
-  // locationSort(){
-  //   console.log("sort is called");
-  //     this.CollegesList=this.CollegesList.sort(function(a,b){
-  //       return a.location.localeCompare(b.location)
-  //     })
-  // }
+  locationSort(){
+    console.log("sort is called");
+      this.CollegesList=this.CollegesList.sort(function(a,b){
+        return a.state.localeCompare(b.state)
+      })
+  }
 
   citySort(){
     console.log("sort is called");

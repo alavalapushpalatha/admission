@@ -16,15 +16,15 @@ export class ViewStudentsComponent implements OnInit {
 
  @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator; 
  @ViewChild(MatSort,{static: false}) sort : MatSort;
+ config:any;
 
   constructor(private capService:CapService,private router:Router) {
     this.config = {
-      itemsPerPage: 2,
+      itemsPerPage: 1,
       currentPage: 1,
     };
    }
   userData: any[] = [];
-  config:any;
   ngOnInit(): void {
     this.capService.getuserData().subscribe((data:any)=> {
     this.userData = data;

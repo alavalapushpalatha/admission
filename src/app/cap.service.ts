@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 import { ICollege } from './Model/college';
 import { College } from './Model/Colleges';
 import { Branches } from './Model/Branches';
+import { User } from './Model/User';
  
 @Injectable({
   providedIn: 'root'
 })
 export class CapService {
-  
   
   constructor(private http: HttpClient,private router:Router) { }
   private baseUrl = 'http://localhost:8080'; 
@@ -22,9 +22,13 @@ export class CapService {
 
   logout() {
     sessionStorage.removeItem('username')
-    sessionStorage.removeItem('password')
+    sessionStorage.removeItem('userType')
+    sessionStorage.clear();
     this.router.navigate(['/carousel'])
   }
+
+  contact:any;
+  newcontact:Number;
 
   user:any;  
   phoneNo:any;
@@ -32,13 +36,13 @@ export class CapService {
   answer:any;
   message:string;
   status:boolean;
-  register(user:any){
+register(user:any){
     let input={
       "phoneNo":user.mobile,
       "name":user.name,
-      "email":user.email,
+     /*  "email":user.email,
       "gender":user.gender,
-      "dob":user.dob,
+      "dob":user.dob, */
       "securityQuestion":user.securityquestion,
       "answer":user.answer,
       "password":user.pwd ,
@@ -49,6 +53,21 @@ export class CapService {
     }
     return this.http.post("http://localhost:8080/register",input);
   }
+  getUser(){
+    this.contact=localStorage.getItem("mobile");
+    this.newcontact=parseInt(this.contact);
+    console.log(this.newcontact);
+    return this.http.get("http://localhost:8080/profile?phoneNo="+this.newcontact)
+
+  }
+  setUser(user:User){
+    
+    console.log(user)
+    return this.http.put("http://localhost:8080/updateprofile",user);
+
+  }
+
+
   loginUser(userCredentials:any){
     this.phoneNo = userCredentials.phone;
     let password = userCredentials.password;
@@ -88,16 +107,21 @@ export class CapService {
   college.address=collegeObj.address;
   college.contactNumber=collegeObj.contactNumber;
   let  branchesList:Branches[]=[];
+  console.log(collegeObj)
+  
  for(let i=0;i<collegeObj.departments.length;i++){
-  //  debugger
-  //  branch.name=null;
-  //  branch.cutOff=null;
+
+ 
   branch.name= collegeObj.departments[i].name;
   branch.cutOff= collegeObj.departments[i].cutoff;
   console.log(branch.name);
   console.log(branch.cutOff);
-  branchesList.push(branch);
+  console.log(branch);
   console.log(branchesList);
+  if(branch !=null){
+    branchesList.push(branch);
+    branch=new Branches();  
+  }
  }
  console.log(college);
  console.log(branchesList);
@@ -121,15 +145,17 @@ updateCollege(collegeObj:ICollege) : Observable<any>{
   college.contactNumber=collegeObj.contactNumber;
   let  branchesList:Branches[]=[];
  for(let i=0;i<collegeObj.departments.length;i++){
-  //  debugger
-  //  branch.name=null;
-  //  branch.cutOff=null;
+
   branch.name= collegeObj.departments[i].name;
   branch.cutOff= collegeObj.departments[i].cutoff;
   console.log(branch.name);
   console.log(branch.cutOff);
-  branchesList.push(branch);
+  console.log(branch);
   console.log(branchesList);
+  if(branch !=null){
+    branchesList.push(branch);
+    branch=new Branches();  
+  }
  }
  console.log(college);
  console.log(branchesList);
@@ -139,6 +165,17 @@ updateCollege(collegeObj:ICollege) : Observable<any>{
  return this.http.put(`${this.baseUrl}`+`/updateCollege`,college);
 }
 
+
+college:College=new College();
+setCollegeToUpdate(clg){
+ 
+  this.college=clg;
+  console.log(this.college)
+}
+getCollege(){
+  return this.college;
+
+}
 
 deleteCollege(collegeCode:String){
   return this.http.delete(`${this.baseUrl}`+`/deleteCollege/${collegeCode}`);
@@ -156,6 +193,18 @@ viewpredictedColleges(contactNumber:string,value:string){
  }
 
 
+
+  giveFeedback(data: any,message1) {
+    let input = {
+      "description": data.feedback,
+      "feedback":message1,
+      "phoneNo":parseInt(localStorage.getItem("mobile"))
+    }
+    console.log(input)
+    return this.http.post("http://localhost:8080/feedback", input);
+
+  }
+
  getfeedback()
  {
    return this.http.get("http://localhost:8080/getFeedback");
@@ -166,6 +215,9 @@ viewpredictedColleges(contactNumber:string,value:string){
  }
 
 
+ viewCollegesOnMarks(contactNumber:number){
+  return this.http.get("http://localhost:8080/viewM/"+contactNumber);
+ }
 
 
 
@@ -175,253 +227,238 @@ viewpredictedColleges(contactNumber:string,value:string){
 
 
 
+  // private collegeList:ICollege[]=[
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  private collegeList:ICollege[]=[
-
-    {
-      collegeId:"1",
-      collegeName:"Anurag",
-      address:"Venkatapur",
-      location:"OU",
-      city:"Hyderabad",
-      contactNumber:"123456789",
-      departments:[
-        {
-          name:"IT", 
-          cutoff:345
-          },
-          {
-            name:"ECE",
-           cutoff:3223
-          },
-          {
-            name:"EEE",
-           cutoff:2231
-          },
-          {
-            name:"CIVIL",
-           cutoff:211
-          },
-          {
-            name:"MECH",
-           cutoff:4558
-          }
-      ]
-    },
-    {
-      collegeId:"2",
-      collegeName:"fdf",
-      address:"eew",
-      location:"ewdscn",
-      city:"wdsfcbvn",
-      contactNumber:"awsedgr",
-      departments:[
-        {
-        name:"IT", 
-        cutoff:345
-        },
-        {
-          name:"ECE",
-         cutoff:98889
-        },
-        {
-          name:"EEE",
-         cutoff:400
-        },
-        {
-          name:"CSE",
-         cutoff:50
-        },
-        {
-          name:"MECH",
-         cutoff:4558
-        }
-    ],
-    },{
-      collegeId:"1",
-      collegeName:"Anurag",
-      address:"Venkatapur",
-      location:"OU",
-      city:"Hyderabad",
-      contactNumber:"123456789",
-      departments:[
-        {
-          name:"IT", 
-          cutoff:345
-          },
-          {
-            name:"ECE",
-           cutoff:3223
-          },
-          {
-            name:"EEE",
-           cutoff:2231
-          },
-          {
-            name:"CIVIL",
-           cutoff:211
-          },
-          {
-            name:"MECH",
-           cutoff:4558
-          }
-      ]
-    },{
-      collegeId:"1",
-      collegeName:"Anurag",
-      address:"Venkatapur",
-      location:"OU",
-      city:"Hyderabad",
-      contactNumber:"123456789",
-      departments:[
-        {
-          name:"IT", 
-          cutoff:345
-          },
-          {
-            name:"ECE",
-           cutoff:3223
-          },
-          {
-            name:"EEE",
-           cutoff:2231
-          },
-          {
-            name:"CIVIL",
-           cutoff:211
-          },
-          {
-            name:"MECH",
-           cutoff:4558
-          }
-      ]
-    },{
-      collegeId:"1",
-      collegeName:"Anurag",
-      address:"Venkatapur",
-      location:"OU",
-      city:"Hyderabad",
-      contactNumber:"123456789",
-      departments:[
-        {
-          name:"IT", 
-          cutoff:345
-          },
-          {
-            name:"ECE",
-           cutoff:3223
-          },
-          {
-            name:"EEE",
-           cutoff:2231
-          },
-          {
-            name:"CIVIL",
-           cutoff:211
-          },
-          {
-            name:"MECH",
-           cutoff:4558
-          }
-      ]
-    },{
-      collegeId:"1",
-      collegeName:"Anurag",
-      address:"Venkatapur",
-      location:"OU",
-      city:"Hyderabad",
-      contactNumber:"123456789",
-      departments:[
-        {
-          name:"IT", 
-          cutoff:345
-          },
-          {
-            name:"ECE",
-           cutoff:3223
-          },
-          {
-            name:"EEE",
-           cutoff:2231
-          },
-          {
-            name:"CIVIL",
-           cutoff:211
-          },
-          {
-            name:"MECH",
-           cutoff:4558
-          }
-      ]
-    },{
-      collegeId:"1",
-      collegeName:"Anurag",
-      address:"Venkatapur",
-      location:"OU",
-      city:"Hyderabad",
-      contactNumber:"123456789",
-      departments:[
-        {
-          name:"IT", 
-          cutoff:345
-          },
-          {
-            name:"ECE",
-           cutoff:3223
-          },
-          {
-            name:"EEE",
-           cutoff:2231
-          },
-          {
-            name:"CIVIL",
-           cutoff:211
-          },
-          {
-            name:"MECH",
-           cutoff:4558
-          }
-      ]
-    }
-   ]
-   ;
+  //   {
+  //     collegeId:"1",
+  //     collegeName:"Anurag",
+  //     address:"Venkatapur",
+  //     location:"OU",
+  //     city:"Hyderabad",
+  //     contactNumber:"123456789",
+  //     departments:[
+  //       {
+  //         name:"IT", 
+  //         cutoff:345
+  //         },
+  //         {
+  //           name:"ECE",
+  //          cutoff:3223
+  //         },
+  //         {
+  //           name:"EEE",
+  //          cutoff:2231
+  //         },
+  //         {
+  //           name:"CIVIL",
+  //          cutoff:211
+  //         },
+  //         {
+  //           name:"MECH",
+  //          cutoff:4558
+  //         }
+  //     ]
+  //   },
+  //   {
+  //     collegeId:"2",
+  //     collegeName:"fdf",
+  //     address:"eew",
+  //     location:"ewdscn",
+  //     city:"wdsfcbvn",
+  //     contactNumber:"awsedgr",
+  //     departments:[
+  //       {
+  //       name:"IT", 
+  //       cutoff:345
+  //       },
+  //       {
+  //         name:"ECE",
+  //        cutoff:98889
+  //       },
+  //       {
+  //         name:"EEE",
+  //        cutoff:400
+  //       },
+  //       {
+  //         name:"CSE",
+  //        cutoff:50
+  //       },
+  //       {
+  //         name:"MECH",
+  //        cutoff:4558
+  //       }
+  //   ],
+  //   },{
+  //     collegeId:"1",
+  //     collegeName:"Anurag",
+  //     address:"Venkatapur",
+  //     location:"OU",
+  //     city:"Hyderabad",
+  //     contactNumber:"123456789",
+  //     departments:[
+  //       {
+  //         name:"IT", 
+  //         cutoff:345
+  //         },
+  //         {
+  //           name:"ECE",
+  //          cutoff:3223
+  //         },
+  //         {
+  //           name:"EEE",
+  //          cutoff:2231
+  //         },
+  //         {
+  //           name:"CIVIL",
+  //          cutoff:211
+  //         },
+  //         {
+  //           name:"MECH",
+  //          cutoff:4558
+  //         }
+  //     ]
+  //   },{
+  //     collegeId:"1",
+  //     collegeName:"Anurag",
+  //     address:"Venkatapur",
+  //     location:"OU",
+  //     city:"Hyderabad",
+  //     contactNumber:"123456789",
+  //     departments:[
+  //       {
+  //         name:"IT", 
+  //         cutoff:345
+  //         },
+  //         {
+  //           name:"ECE",
+  //          cutoff:3223
+  //         },
+  //         {
+  //           name:"EEE",
+  //          cutoff:2231
+  //         },
+  //         {
+  //           name:"CIVIL",
+  //          cutoff:211
+  //         },
+  //         {
+  //           name:"MECH",
+  //          cutoff:4558
+  //         }
+  //     ]
+  //   },{
+  //     collegeId:"1",
+  //     collegeName:"Anurag",
+  //     address:"Venkatapur",
+  //     location:"OU",
+  //     city:"Hyderabad",
+  //     contactNumber:"123456789",
+  //     departments:[
+  //       {
+  //         name:"IT", 
+  //         cutoff:345
+  //         },
+  //         {
+  //           name:"ECE",
+  //          cutoff:3223
+  //         },
+  //         {
+  //           name:"EEE",
+  //          cutoff:2231
+  //         },
+  //         {
+  //           name:"CIVIL",
+  //          cutoff:211
+  //         },
+  //         {
+  //           name:"MECH",
+  //          cutoff:4558
+  //         }
+  //     ]
+  //   },{
+  //     collegeId:"1",
+  //     collegeName:"Anurag",
+  //     address:"Venkatapur",
+  //     location:"OU",
+  //     city:"Hyderabad",
+  //     contactNumber:"123456789",
+  //     departments:[
+  //       {
+  //         name:"IT", 
+  //         cutoff:345
+  //         },
+  //         {
+  //           name:"ECE",
+  //          cutoff:3223
+  //         },
+  //         {
+  //           name:"EEE",
+  //          cutoff:2231
+  //         },
+  //         {
+  //           name:"CIVIL",
+  //          cutoff:211
+  //         },
+  //         {
+  //           name:"MECH",
+  //          cutoff:4558
+  //         }
+  //     ]
+  //   },{
+  //     collegeId:"1",
+  //     collegeName:"Anurag",
+  //     address:"Venkatapur",
+  //     location:"OU",
+  //     city:"Hyderabad",
+  //     contactNumber:"123456789",
+  //     departments:[
+  //       {
+  //         name:"IT", 
+  //         cutoff:345
+  //         },
+  //         {
+  //           name:"ECE",
+  //          cutoff:3223
+  //         },
+  //         {
+  //           name:"EEE",
+  //          cutoff:2231
+  //         },
+  //         {
+  //           name:"CIVIL",
+  //          cutoff:211
+  //         },
+  //         {
+  //           name:"MECH",
+  //          cutoff:4558
+  //         }
+  //     ]
+  //   }
+  //  ]
+  //  ;
   
 
-  getCollegesList(): ICollege[]{
+  // getCollegesList(): ICollege[]{
     
-    return this.collegeList;
-  }
+  //   return this.collegeList;
+  // }
 
-  getCollgeById(id): ICollege{
-    let college: ICollege;
-    for (let i =0; i< this.collegeList.length;++i){
-      if(id==this.collegeList[i].collegeId){
-        college= this.collegeList[i];
-        i= this.collegeList.length;
-      }  
-    }
-    return college;
+  // getCollgeById(id): ICollege{
+  //   let college: ICollege;
+  //   for (let i =0; i< this.collegeList.length;++i){
+  //     if(id==this.collegeList[i].collegeId){
+  //       college= this.collegeList[i];
+  //       i= this.collegeList.length;
+  //     }  
+  //   }
+  //   return college;
 
-   //  return URL for Backend 
-  }
+  //  //  return URL for Backend 
+  // }
 
-  errorHandler(error: HttpErrorResponse) {
-    console.error(error);
-    return throwError(error.message || "Server Error");
-  }
+  // errorHandler(error: HttpErrorResponse) {
+  //   console.error(error);
+  //   return throwError(error.message || "Server Error");
+  // }
  
 }

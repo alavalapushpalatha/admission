@@ -16,6 +16,8 @@ export class UserLoginComponent implements OnInit {
       this.status=data;
       if(this.status)
         {
+          sessionStorage.setItem('username', loginForm.phone + "");
+          sessionStorage.setItem('userType', 'User');
           this.message="Valid user";
           this.router.navigate(['/userHome']);
   

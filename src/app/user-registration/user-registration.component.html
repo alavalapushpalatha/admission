@@ -1,190 +1,181 @@
 <html>
 
-    <body>
-        <app-homenav></app-homenav>
+<body>
+    <app-homenav></app-homenav>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6"><br><br>
-                   <h1 style="margin-left: 100px;">Register</h1>
-                   <form #userForm='ngForm' (ngSubmit)="onSubmit(userForm.value)">
-                    <!--  <label class="label col-md-3  control-label">UserName</label> -->
-                    <div class="col-md-9">
-                        <input required type="text" #nameRef='ngModel' pattern="[A-Za-z\s]{3,}" class="form-control"
-                             name="name" placeholder="Enter Name" ngModel>
-                        <div *ngIf='nameRef.errors && (nameRef.touched || nameRef.dirty)' class="alert alert-danger">
-                            <div [hidden]='!nameRef.errors.required'>
-                                please enter Name
-                            </div>
-                            <div [hidden]='!nameRef.errors.pattern'>
-                                Name should be only alphabets with more than 3 characters
-                            </div>
+       <div style="margin-left: 30%;">
+               <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register</h1>
+               <form #userForm='ngForm' (ngSubmit)="onSubmit(userForm.value)">
+                <div class="container">
+                <!--  <label class="label col-md-3  control-label">UserName</label> -->
+                <div class="form-group style1">
+                    <label for="name">Name</label>
+                    <input required type="text" #nameRef='ngModel' pattern="[A-Za-z\s]{3,}" class="form-control"
+                         name="name" placeholder="Enter Name" ngModel>
+                    <div *ngIf='nameRef.errors && (nameRef.touched || nameRef.dirty)' class="alert alert-danger">
+                        <div [hidden]='!nameRef.errors.required'>
+                            please enter Name
                         </div>
-                    </div> 
-                  <!--   <label class="label col-md-3  control-label">Mobile Number</label> -->
-                    <div class="col-md-9">
-                        <input required type="text" #phoneRef='ngModel' ngModel pattern="[1-9][0-9]{9}" class="form-control"
-                            name="mobile" placeholder="Enter Valid Mobile Number" ngModel >
-                        <div *ngIf='phoneRef.errors && (phoneRef.touched || phoneRef.dirty)' class="alert alert-danger">
-                            <div [hidden]='!phoneRef.errors.required'>
-                                please enter your phone number
-                            </div>
-                            <div [hidden]='!phoneRef.errors.pattern'>
-                                phone no should be of 10 digits
-                            </div>
+                        <div [hidden]='!nameRef.errors.pattern'>
+                            Name should be only alphabets with more than 3 characters
                         </div>
                     </div>
-    
-                    <!--  <label class="label col-md-3  control-label">EmailId</label> -->
-                    <div class="col-md-9">
-                        <input required type="text" #emailRef='ngModel' class="form-control"
-                            pattern="[a-z][a-z0-9.]+@[a-z]+.(com|net|in)" rows="1" name="email"
-                            placeholder="Enter EmailID" ngModel >
-                        <div *ngIf='emailRef.errors && (emailRef.touched || emailRef.dirty)' class="alert alert-danger">
-    
-                            <div [hidden]='!emailRef.errors.required'>
-                                please enter your mail
-                            </div>
-                            <div *ngIf="emailRef.errors.pattern">
-                                mail should be entered correctly
-                            </div>
-                        </div>
-                    </div>
-                   
-    
-                  <!--   <label class="label col-md-3  control-label">Gender</label> -->
-    
-                    <div class="col-md-9">
-                        <div class="form-control">
-                            <label class="radio-inline">
-                                <input type="radio" value="male" name="gender" ngModel  required #genderRef='ngModel' > Male</label>
-                                <label class="radio-inline">
-    <input type="radio" value="female" name="gender" ngModel  required #genderRef='ngModel'> Female</label>
-    <div *ngIf="genderRef.invalid && genderRef.touched"> 
-        <div [hidden]='!genderRef.errors.required'></div>
-          Gender required. 
-    </div> 
-    <div *ngIf="genderRef.errors?.required">selectedBy is required</div>
-                                <!-- <input type="radio" value="male" ngModel name="gender" #genderRef="ngModel" [(ngModel)]="model.gender">Male
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" value="female" ngModel name="gender" [(ngModel)]="model.gender">Female
-                            </label> -->
-                        </div>
-                    </div><br>
-    
-                    <div class="col-md-9">
-                        <input required type="date" #dobRef='ngModel' ngModel  min="1950-12-31"  max="2003-12-31"  class="form-control" name="dob" 
-                            placeholder="Enter date of birth" ngModel >
-                        <div *ngIf='dobRef.errors && (dobRef.touched || dobRef.dirty)' class="alert alert-danger">
-                            <div [hidden]='!dobRef.errors.required'>
-                                please enter your dob
-                            </div>
-    
-                        </div>
-                    </div>
-    
-    
-                    <div class="col-md-9">
-    
-                        <select required class="form-control" #questionRef='ngModel' name="securityquestion" ngModel>
-                          
-                           <option value="" disabled selected hidden>Select a question</option>
-                            <option>What is your favourite dish  </option>
-                            <option>What is your favourite location </option>
-                        </select>
-                        <div *ngIf='questionRef.errors && (questionRef.touched || questionRef.dirty)' class="alert alert-danger">
-                        <div [hidden]='!questionRef.errors.required'>please select question</div></div>
-                    </div>
-                   
-    <!--  <label class="label col-md-3  control-label">UserName</label> -->
-                    <div class="col-md-9">
-                        <input required type="text" #answerRef='ngModel' pattern="[A-Za-z\s]{3,}" class="form-control"
-                             name="answer" placeholder="Enter Answer" ngModel >
-                        <div *ngIf='answerRef.errors && (answerRef.touched || answerRef.dirty)' class="alert alert-danger">
-                            <div [hidden]='!answerRef.errors.required'>
-                                please enter Answer
-                            </div>
-                            <div [hidden]='!answerRef.errors.pattern'>
-                                answer should be only alphabets with more than 3 characters
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <div class="col-md-9">
-                        <input required type="password" #passwordRef='ngModel' class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pwd"
-                            placeholder="Enter password" ngModel>
-                            <div *ngIf='passwordRef.errors && (passwordRef.touched || passwordRef.dirty)' class="alert alert-danger">
-                                <div [hidden]='!passwordRef.errors.required'>
-                                    please enter Password
-                                </div>
-                                <div *ngIf="passwordRef.errors.pattern"> Must contain at least one number and one uppercase
-                                    and
-                                    lowercase letter, and at least 8 or more characters.</div>
-                            </div>
-                    </div>
-                    <div class="col-md-9">
-                        <input required type="text" #hallticketRef='ngModel' ngModel pattern="[1-9][0-9]{9}" class="form-control"
-                            name="hallticket" placeholder="Enter Valid Hall ticket Number" ngModel >
-                        <div *ngIf='hallticketRef.errors && (hallticketRef.touched || hallticketRef.dirty)' class="alert alert-danger">
-                            <div [hidden]='!hallticketRef.errors.required'>
-                                please enter your Inter Hall Ticket Number
-                            </div>
-                            <div [hidden]='!hallticketRef.errors.pattern'>
-                                hallticket no should be  of 10 digits
-                            </div>
-                        </div>
-                    </div>
+                </div> 
+              <!--   <label class="label col-md-3  control-label">Mobile Number</label> -->
+              <div class="form-group style1">
+            
                     
-    
-                    <div class="col-md-9">
-                        <input required type="text" #marksRef='ngModel' ngModel pattern="[0-9]+" class="form-control required"
-                            name="marks"  placeholder="Enter Marks" ngModel>
-                        <div *ngIf='marksRef.errors && (marksRef.touched || marksRef.dirty)' class="alert alert-danger">
-                            <div [hidden]='!marksRef.errors.required'>
-                                please enter your Marks
-                            </div>
-                            <div *ngIf="marksRef.errors.pattern">
-                                 Marks should be only digits 
-                            </div>
+                <label for="model">Phone Number</label>
+                    <input required type="text" #phoneRef='ngModel' ngModel pattern="[1-9][0-9]{9}" class="form-control"
+                        name="mobile" placeholder="Enter Valid Mobile Number" ngModel >
+                    <div *ngIf='phoneRef.errors && (phoneRef.touched || phoneRef.dirty)' class="alert alert-danger">
+                        <div [hidden]='!phoneRef.errors.required'>
+                            please enter your phone number
+                        </div>
+                        <div [hidden]='!phoneRef.errors.pattern'>
+                            phone no should be of 10 digits
                         </div>
                     </div>
-                    
-    
-                
-                    
-               <br>
-                  
-                        <div class="col-md-9"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-info" id="button" type="submit" value="Submit" [disabled]='userForm.invalid'
-                            
-                            >Register</button><br/>
-                            <br/>
-    <!-- <button class="btn btn-info" (click)="back()">Go Home</button> -->
-                            <div ><h1>{{message}}</h1></div> 
-                            </div>
-                         </form>
                 </div>
-            </div>
-        </div>
-    
-    </body>
-    
-    </html>
-    
+
+                <!--  <label class="label col-md-3  control-label">EmailId</label> -->
+                <!-- <div class="form-group style1">
+                    <label for="email"> Email</label>
+                    <input required type="text" #emailRef='ngModel' class="form-control"
+                        pattern="[a-z][a-z0-9.]+@[a-z]+.(com|net|in)" rows="1" name="email"
+                        placeholder="Enter EmailID" ngModel >
+                    <div *ngIf='emailRef.errors && (emailRef.touched || emailRef.dirty)' class="alert alert-danger">
+
+                        <div [hidden]='!emailRef.errors.required'>
+                            please enter your mail
+                        </div>
+                        <div *ngIf="emailRef.errors.pattern">
+                            mail should be entered correctly
+                        </div>
+                    </div>
+                </div>
+               
+ -->
+              <!--   <label class="label col-md-3  control-label">Gender</label> -->
+
+             <!--  <div class="form-group style1">
+                    
+                        <label for="gender"> gender</label>
+                        <label class="radio-inline">
+                            <input type="radio" value="male" name="gender" ngModel  required #genderRef='ngModel' > Male</label>
+                            <label class="radio-inline">
+<input type="radio" value="female" name="gender" ngModel  required #genderRef='ngModel'> Female</label>
+<div *ngIf="genderRef.invalid && genderRef.touched"> 
+    <div [hidden]='!genderRef.errors.required'></div>
+	  Gender required. 
+</div> 
+<div *ngIf="genderRef.errors?.required">gender is required</div> -->
+                            <!-- <input type="radio" value="male" ngModel name="gender" #genderRef="ngModel" [(ngModel)]="model.gender">Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="female" ngModel name="gender" [(ngModel)]="model.gender">Female
+                        </label> -->
+                    
+                <!-- </div><br> -->
+
+                <!-- <div class="form-group style1">
+                    <label for="dob"> Date of birth</label>
+                    <input required type="date" #dobRef='ngModel' ngModel  min="1950-12-31"  max="2003-12-31"  class="form-control" name="dob" 
+                        placeholder="Enter date of birth" ngModel >
+                    <div *ngIf='dobRef.errors && (dobRef.touched || dobRef.dirty)' class="alert alert-danger">
+                        <div [hidden]='!dobRef.errors.required'>
+                            please enter your dob
+                        </div>
+
+                    </div>
+                </div> -->
 
 
+                <div class="form-group style1">
+                    <label for="question">Security Question</label>
+                    <select required class="form-control" #questionRef='ngModel' name="securityquestion" ngModel>
+                        
+                        <!-- <option  [ngValue]="undefined"  disabled selected>Select your Question</option> -->
+                        <!-- <option value="undefined" selected>Select one category </option>  -->
+                        <!-- <option [ngValue]="undefined" hidden>Select one category</option> -->
+                       <!--  <option hidden [value]=""  selected>Select one category </option> -->
+                       <option value="" disabled selected hidden>Select a question</option>
+                        <option>What is your favourite dish  </option>
+                        <option>What is your favourite location </option>
+                    </select>
+                    <div *ngIf='questionRef.errors && (questionRef.touched || questionRef.dirty)' class="alert alert-danger">
+                    <div [hidden]='!questionRef.errors.required'>please select question</div></div>
+                </div>
+               
+<!--  <label class="label col-md-3  control-label">UserName</label> -->
+<div class="form-group style1">
+    <label for="answer">Answer</label>
+                    <input required type="text" #answerRef='ngModel' pattern="[A-Za-z\s]{3,}" class="form-control"
+                         name="answer" placeholder="Enter Answer" ngModel >
+                    <div *ngIf='answerRef.errors && (answerRef.touched || answerRef.dirty)' class="alert alert-danger">
+                        <div [hidden]='!answerRef.errors.required'>
+                            please enter Answer
+                        </div>
+                        <div [hidden]='!answerRef.errors.pattern'>
+                            answer should be only alphabets with more than 3 characters
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="form-group style1">
+                    <label for="password">Password</label>
+                    <input required type="password" #passwordRef='ngModel' class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pwd"
+                        placeholder="Enter password" ngModel>
+                        <div *ngIf='passwordRef.errors && (passwordRef.touched || passwordRef.dirty)' class="alert alert-danger">
+                            <div [hidden]='!passwordRef.errors.required'>
+                                please enter Password
+                            </div>
+                            <div *ngIf="passwordRef.errors.pattern"> Must contain at least one number and one uppercase
+                                and
+                                lowercase letter, and at least 8 or more characters.</div>
+                        </div>
+                </div>
+               <!--  <div class="col-md-9">
+                    <input required type="text" #hallticketRef='ngModel' ngModel pattern="[1-9][0-9]{9}" class="form-control"
+                        name="hallticket" placeholder="Enter Valid Hall ticket Number" ngModel >
+                    <div *ngIf='hallticketRef.errors && (hallticketRef.touched || hallticketRef.dirty)' class="alert alert-danger">
+                        <div [hidden]='!hallticketRef.errors.required'>
+                            please enter your Inter Hall Ticket Number
+                        </div>
+                        <div [hidden]='!hallticketRef.errors.pattern'>
+                            hallticket no should be  of 10 digits
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="form-group style1">
+                <label for="marks">marks</label>
+                    <input required type="text" #marksRef='ngModel' ngModel pattern="[0-9]+" class="form-control required"
+                        name="marks"  placeholder="Enter Marks" ngModel>
+                    <div *ngIf='marksRef.errors && (marksRef.touched || marksRef.dirty)' class="alert alert-danger">
+                        <div [hidden]='!marksRef.errors.required'>
+                            please enter your Marks
+                        </div>
+                        <div *ngIf="marksRef.errors.pattern">
+                             Marks should be only digits 
+                        </div>
+                    </div>
+                </div>
+                
 
+            
+                
+           
+              
+                   
+                    <button class="btn btn-info" id="button" type="submit" value="Submit" [disabled]='userForm.invalid'>Register</button>
+                        
+<!-- <button class="btn btn-info" (click)="back()">Go Home</button> -->
+                        <!-- <div ><h1>{{message}}</h1></div>  -->
+                        </div>
+                     </form>
+                    </div>
 
+</body>
 
-
-
-
-
-
-
-
-
-
-
+</html>

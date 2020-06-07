@@ -1,103 +1,3 @@
-
-<!-- <form #createForm="ngForm" >
-  <app-navbar></app-navbar>
-  <div class="container">
-    <table align="center">
-
-
-      <tr class="form-group">
-        <th>College Code</th>
-        <td><input type="text" class="form-control" id="collegeCode" name="collegeCode" #collegeCode="ngModel"
-            [(ngModel)]="college.collegeCode" required placeholder="EX:RSR13" maxlength="10"></td>
-        <td [hidden]="collegeCode.valid || collegeCode.pristine" class="alert alert-danger">First 3 letters shoud be
-          Alphabates </td>
-      </tr>
-
-      <tr class="form-group">
-        <th>College Name</th>
-        <td><input type="text" class="form-control" id="collegeName" name="collegeName" #collegeName="ngModel"
-            [(ngModel)]="college.collegeName" required pattern="[a-zA-Z\s]{3,}"></td>
-        <td [hidden]="collegeName.valid || collegeName.pristine" class="alert alert-danger">Only Alphabates & Min 3
-          letters </td>
-      </tr>
-
-      <tr class="form-group">
-        <th>State</th>
-        <td><input type="text" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="college.state"
-            required pattern="[a-zA-Z\s]{3,}"></td>
-        <td [hidden]="state.valid || state.pristine" class="alert alert-danger">Only Alphabates & Min 3 letters </td>
-      </tr>
-
-      <tr class="form-group">
-        <th>City</th>
-        <td><input type="text" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="college.city"
-            required pattern="[a-zA-Z\s]{3,}"></td>
-        <td [hidden]="city.valid || city.pristine" class="alert alert-danger">Only Alphabates & Min 3 letters </td>
-      </tr>
-
-      <tr class="form-group">
-        <th>Address</th>
-        <td><input type="text" class="form-control" id="address" name="address" #address="ngModel"
-            [(ngModel)]="college.address" required pattern="[a-zA-Z\s]{3,}"></td>
-        <td [hidden]="address.valid || address.pristine" class="alert alert-danger">Only Alphabates & Min 3 letters
-        </td>
-      </tr>
-
-      <tr class="form-group">
-        <th>Contact Number</th>
-        <td><input type="text" class="form-control" id="contactNumber" name="contactNumber" #contactNumber="ngModel"
-            [(ngModel)]="college.contactNumber" required></td>
-        <td [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">Only Alphabates & Min 3
-          letters </td>
-      </tr>
-<br>
-      <div align="center"  class="form-group" class="col">
-        <label>Choose Departments</label>
-      </div>
-      <div align="center" class="form-group">
-        <input type="checkbox"  id="csc" name="csc" #csc="ngModel"
-        [(ngModel)]="college.branchCutoff" value="CSE" >CSE
-        <input type="number" id="cutOff" name="cutOff" #cutOff="ngModel"
-        [(ngModel)]="college.branchCutoff" required>
-      </div>
-      <div align="center" class="form-group">
-        <input type="checkbox"  id="ece" name="ece" #ece="ngModel"
-        [(ngModel)]="branches.name" value="ECE" >ECE
-        <input type="number" id="cutOff" name="cutOff" #cutOff="ngModel"
-        [(ngModel)]="branches.cutOff" required>
-      </div>
-      <div align="center" class="form-group">
-        <input type="checkbox"  id="eee" name="eee" #eee="ngModel"
-        [(ngModel)]="branches.name" value="EEE" >EEE
-        <input type="number" id="cutOff" name="cutOff" #cutOff="ngModel"
-        [(ngModel)]="branches.cutOff" required>
-      </div>
-      <div align="center" class="form-group">
-        <input type="checkbox"  id="civil" name="civil" #civil="ngModel"
-        [(ngModel)]="branches.name" value="CIVIL" >CIVIL
-        <input type="number" id="cutOff" name="cutOff" #cutOff="ngModel"
-        [(ngModel)]="branches.cutOff" required>
-      </div>
-      <div align="center" class="form-group">
-        <input type="checkbox"  id="mech" name="mech" #mech="ngModel"
-        [(ngModel)]="branches.name" value="MECH" >MECH
-        <input type="number" id="cutOff" name="cutOff" #cutOff="ngModel"
-        [(ngModel)]="branches.cutOff" required>
-      </div>
-
-     <div class="form-group" style="text-align:left">
-      <button type="button"  (click)="addColleges()" class="btn-info">Add</button>
-    </div>
-    <div *ngIf="showDiv" style="color:red;text-align:center;">
-      <br />
-      {{msg}}
-      {{errorMsg}}
-    </div>
-    </table>
-  </div>
-
-</form> -->
-
 <app-navbar></app-navbar>
 <div class="m-5 myContent">
     <div class="container">
@@ -113,24 +13,30 @@
                 <label>College Code</label>
               </div>
               <div class="col; input-group">
-                <input type="text" name="collegeId" #collegeId="ngModel" class="form-control" ngModel required>
+                <input type="text" name="collegeId" #collegeId="ngModel" pattern="[a-zA-Z]{5}" maxlength="5" class="form-control" ngModel required>
               </div>
               <div *ngIf="collegeId.errors && (collegeId.dirty || collegeId.touched)" style="text-align:left; padding-top:5px; color:red;">
                 <div [hidden]="!collegeId.errors.required">
                   <p>&nbsp;College Code is mandatory</p>
               </div>
+              <div  [hidden]='!collegeId.errors.pattern'>
+                <p>College Code must be of 5 Charactors & only alphabates</p>
+            </div>
             </div>
             <div class="form-group">
               <div class="col" style="text-align:left">
                 <label>College Name</label>
               </div>
               <div class="col; input-group">
-                <input type="text" name="collegeName" #collegeName="ngModel" class="form-control" ngModel required>
+                <input type="text" name="collegeName" #collegeName="ngModel" pattern="[a-zA-Z\s]{3,}" class="form-control" ngModel required>
               </div>
               <div *ngIf="collegeName.errors && (collegeName.dirty || collegeName.touched)" style="text-align:left; padding-top:5px; color:red;">
                 <div [hidden]="!collegeName.errors.required">
                   <p>&nbsp;Name is mandatory</p>
                 </div>
+                <div  [hidden]='!collegeName.errors.pattern'>
+                  <p>College name must have min 3 Charactors & only alphabates</p>
+              </div>
               </div>
             </div>
   
@@ -139,12 +45,15 @@
                 <label>Address</label>
               </div>
               <div class="col; input-group">
-                <input type="text" name="address" #address="ngModel" class="form-control" ngModel required>
+                <input type="text" name="address" #address="ngModel"  minlength="3" class="form-control" ngModel required>
               </div>
               <div *ngIf="address.errors && (address.dirty || address.touched)" style="text-align:left; padding-top:5px; color:red;">
                 <div [hidden]="!address.errors.required">
                   <p>&nbsp;Address is mandatory</p>
                 </div>
+                <div  [hidden]='!address.errors.minlength'>
+                  <p>Address must have min 3 Charactors</p>
+              </div>
               </div>
             </div>
   
@@ -153,12 +62,15 @@
                 <label>State</label>
               </div>
               <div class="col; input-group">
-                <input type="text" name="location" #location="ngModel" class="form-control" ngModel required>
+                <input type="text" name="location" #location="ngModel" minlength="2" class="form-control" ngModel required>
               </div>
               <div *ngIf="location.errors && (location.dirty || location.touched)" style="text-align:left; padding-top:5px; color:red;">
                 <div [hidden]="!location.errors.required">
                   <p>&nbsp;State is mandatory</p>
                 </div>
+                <div  [hidden]='!location.errors.minlength'>
+                  <p>State must have min 3 Charactors</p>
+              </div>
               </div>
             </div>
 
@@ -167,12 +79,15 @@
                 <label>City</label>
               </div>
               <div class="col; input-group">
-                <input type="text" name="city" #city="ngModel" class="form-control" ngModel required>
+                <input type="text" name="city" #city="ngModel" minlength="3" class="form-control" ngModel required>
               </div>
               <div *ngIf="city.errors && (city.dirty || city.touched)" style="text-align:left; padding-top:5px; color:red;">
                 <div [hidden]="!city.errors.required">
                   <p>&nbsp;City is mandatory</p>
                 </div>
+                <div  [hidden]='!city.errors.minlength'>
+                  <p>City must have min 3 Charactors</p>
+              </div>
               </div>
             </div>
             
@@ -181,32 +96,49 @@
                 <label>Contact Number</label>
               </div>
               <div class="col; input-group">
-                <input type="text" name="contactNumber" #contactNumber="ngModel" class="form-control" ngModel required>
+                <input type="text" name="contactNumber" #contactNumber="ngModel" maxlength="10" pattern="(6|7|8|9)\d{9}"  class="form-control" ngModel required>
               </div>
               <div *ngIf="contactNumber.errors && (contactNumber.dirty || contactNumber.touched)" style="text-align:left; padding-top:5px; color:red;">
                 <div [hidden]="!contactNumber.errors.required">
                   <p>&nbsp;Contact Number is mandatory</p>
                 </div>
+                <div [hidden]="!contactNumber.errors.pattern">
+                  <p>&nbsp;Contact Number must have 10 digits & Numerical</p>
+                </div>
               </div>
             </div>
 
             <div class="col" style="text-align:left">
-              <label>Departments</label>
+              <label>Choose Departments</label>
             </div>
-            <div class="form-check " *ngFor="let dept of departmentList,let index=i">
-              <input type="checkbox"  value="{{dept}}"   (change)="departmentChange($event)">
+            <div class="form-check "  *ngFor="let dept of departmentList,let index=i">
+              <input type="checkbox" name ="dept" required #dept="ngModel" value="{{dept}}"   (change)="departmentChange($event)" ngModel> 
                {{dept}}
+               <div *ngIf="dept.errors && (dept.dirty || dept.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!dept.errors.required">
+                  <p>&nbsp;Department is mandatory</p>
+                </div>
+                
+              </div>
             </div> 
             <div class="col" style="text-align:left">
-              <label>Cutoff</label>
+              <label>Cutoff Percentage</label>
             </div>
             <div class="form-check" *ngFor="let dept of selectedDepartment,let index=i">
                {{dept}}
-               <input type="number" name="cutoff" #cutoff="ngModel" (change)="cutoffChange($event)" class="form-control" ngModel required>
-            </div> 
+               <input type="number"  name="cutoff" minlength="2"  #cutoff="ngModel" (change)="cutoffChange($event)" class="form-control" ngModel required>
+               <div *ngIf="cutoff.errors && (cutoff.dirty || cutoff.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!cutoff.errors.required">
+                  <p>&nbsp;Cutoff percent is mandatory</p>
+                </div>
+                <div  [hidden]='!cutoff.errors.minlength'>
+                  <p>Cutoff must have min 2 digits</p>
+              </div>
+              </div>
+             </div> 
 
             <div class="form-group" style="text-align:left">
-              <button type="submit" [disabled]="!createForm.form.valid" class="btn-info">Add</button>
+              <button type="submit"[disabled]='createForm.invalid' class="btn btn-info">Add</button>
             </div>
           </div>
           <div class="col-md-4">
@@ -221,4 +153,4 @@
       </form>
     </div>
   </div>
-  <app-user-footer></app-user-footer>
+  <!-- <app-user-footer></app-user-footer> -->

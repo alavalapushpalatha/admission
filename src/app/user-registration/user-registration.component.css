@@ -3,20 +3,20 @@
 }
 body{
     background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(src\assets\register.jpg);
-    height: 200vh;
+    height: 150vh;
     background-size: cover;
     background-position: center;
     
  }
  h1{ 
-    color: blue;
+    color:bisque;
     
  }
 
  
- /* label{
+ label{
     color: bisque;
-} */
+}
 .style1 {
 
     width: 40%;

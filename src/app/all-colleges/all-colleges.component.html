@@ -1,31 +1,53 @@
-<app-user-navbar></app-user-navbar>
-<table cellspacing="2" align="center" >
-    <tr style="align-content: center;background-color: rgb(48, 226, 12);">Colleges</tr>
-    <tr>
-       <th cellspacing="8">CollegeCode</th>
-       <th style="padding: 10px;" cellspacing="8">CollegeName</th>
-       <th style="padding: 10px;" cellspacing="8">State</th>
-       <th style="padding: 16px;" cellspacing="8"> City</th>
-       <th style="padding: 10px;" cellspacing="8">Address</th>
-       <th style="padding: 10px;" cellspacing="8">ContactNumber</th>
-       <th style="padding: 10px;">BranchCutoff</th>
-    </tr>
-    
-    <tr *ngFor="let object of samples" style="padding: 16px;">
-       <td style="padding: 14px;">{{object.collegeCode}}</td>
-       <td style="padding: 16px;">{{object.collegeName}}</td> 
-       <td style="padding: 16px;">{{object.state}}</td>
-       <td style="padding: 16px;">{{object.city}}</td>
-       <td style="padding: 16px;">{{object.address}}</td>
-       <td style="padding: 16px;">{{object.contactNumber}}</td>
-    <td  style="padding: 10px;">
-    <li *ngFor="let recipient of object.branchCutoff | keyvalue">
-      {{recipient.key}} --> {{recipient.value}}
-  </li>
-</td>
-      
-    </tr>  
-    
-    
- </table> 
-
+<body>
+    <app-user-navbar></app-user-navbar>
+    <table align="center" class="table table-striped" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <thead style="font-size: 12px">
+            <tr>
+                <th><i style="color:#fa07e6">
+                        <mfDefaultSorter by="collegeCode"><b>CollegeCode</b></mfDefaultSorter>
+                    </i></th>
+                <th><i style="color:#fa07e6">
+                        <mfDefaultSorter by="collegeName"><b>CollegeName</b></mfDefaultSorter>
+                    </i></th>
+                <th><i style="color:#fa07e6">
+                        <mfDefaultSorter by="state"><b>State</b></mfDefaultSorter>
+                    </i></th>
+                <th><i style="color:#fa07e6">
+                        <mfDefaultSorter by="city"><b>City</b></mfDefaultSorter>
+                    </i></th>
+                <th><i style="color:#fa07e6">
+                        <mfDefaultSorter by="address"><b>Address</b></mfDefaultSorter>
+                    </i></th>
+                <th><i style="color:#fa07e6">
+                        <mfDefaultSorter by="contactNumber"><b>ContactNumber</b></mfDefaultSorter>
+                    </i></th>
+                <th><i style="color:#fa07e6"><b>BranchCutoff</b></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let object of mf.data">
+                <td>{{object.collegeCode}}</td>
+                <td>{{object.collegeName}}</td>
+                <td>{{object.state}}</td>
+                <td>{{object.city}}</td>
+                <td>{{object.address}}</td>
+                <td>{{object.contactNumber}}</td>
+                <td>
+                    <li *ngFor="let recipient of object.branchCutoff | keyvalue">
+                        {{recipient.key}} --> {{recipient.value}}
+                    </li>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <br>
+            <tr>
+                <td>
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+</body>
+<app-user-footer></app-user-footer>

@@ -23,8 +23,7 @@ export class UserRegistrationComponent implements OnInit {
         /*   this.router.navigate(['/home']); */
         console.log(this.status);
         this.message="Registered Successfully..."
-        this.router.navigate(['/login']);
-
+        this.router.navigate(['/userLogin']);
         }
         else{
           this.message="User is alredy existing"
@@ -32,9 +31,7 @@ export class UserRegistrationComponent implements OnInit {
 
         }
       });
-  
 
-   
   }
  
 

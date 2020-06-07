@@ -3,7 +3,7 @@
 <div >
     <form>
 
-      <form class="navbar-form navbar-center" action="/action_page.php">
+      <form  class="navbar-form navbar-center" action="/action_page.php">
         <div class="input-group">
           <input type="text" class="form-control" placeholder=" &#61442; Search" id="search" [(ngModel)]="searchText"
             name="search">
@@ -17,22 +17,31 @@
       </form>
       <br>
       <br>
+      <table [mfData]="feedbackData" #mf="mfDataTable" [mfRowsOnPage]="5">
+      <table class="table table-striped" border="2"  cellspacing="2px" cellpadding="2px" align="center" >
 
-      <table class="table table-striped" border="2"  cellspacing="2px" cellpadding="2px">
 
         <tr>
-          <th>Phone Num</th>
-          <th>Feedback</th>
-          
-        </tr>
+            <th><i style="color:#fa07e6"><mfDefaultSorter by="userName"><b>User Name</b></mfDefaultSorter></i></th>
+            <th><i style="color:#fa07e6"><mfDefaultSorter by="phoneNo"><b>Mobile Number</b></mfDefaultSorter></i></th>
+            <th><i style="color:#fa07e6"><mfDefaultSorter by="userEmail"><b>Email</b></mfDefaultSorter></i></th>
+            <th><i style="color:#fa07e6"><mfDefaultSorter by="feedback"><b>Feedback</b></mfDefaultSorter></i></th>
+            <th><i style="color:#fa07e6"><mfDefaultSorter by="description"><b>Description</b></mfDefaultSorter></i></th>
+            </tr>
 
-        <tr id="userBooking" *ngFor="let c of feedbackData | filter:searchText ;let i=index">
+        <tr id="userBooking" *ngFor="let c of mf.data | filter:searchText ;let i=index">
+          <td>{{c.userName}}</td>
           <td>{{c.phoneNo}}</td>
+          <td>{{c.userEmail}}</td>
           <td>{{c.feedback}}</td>
-          
+          <td>{{c.description}}</td>
+          </tr>
+
       </table>
-      <!-- <pagination-controls align="center" (pageChange)="pageChanged($event)"></pagination-controls> -->
+      <div align="center">
+      <mfBootstrapPaginator></mfBootstrapPaginator>
+    </div>
 
-
+    </table>
     </form> 
   </div>

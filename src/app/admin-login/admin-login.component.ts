@@ -20,7 +20,7 @@ export class AdminLoginComponent implements OnInit {
     this.service.login(this.login).subscribe((data: boolean) => {
       if (data) {
         sessionStorage.setItem('username', this.login.mobNum + "");
-        sessionStorage.setItem('password', this.login.password);
+        sessionStorage.setItem('userType', 'Admin');
 
         this.router.navigate(['/adminHome']);
       }
