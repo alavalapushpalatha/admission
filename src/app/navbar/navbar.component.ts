@@ -16,6 +16,11 @@ export class NavbarComponent implements OnInit {
 logout(){
   this.service.logout();
 }
+
+changePassword(){
+  this.router.navigate(['/resetPassword']);
+}
+
 showMenu(){
 
 }

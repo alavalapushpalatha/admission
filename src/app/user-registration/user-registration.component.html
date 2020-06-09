@@ -7,7 +7,6 @@
                <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register</h1>
                <form #userForm='ngForm' (ngSubmit)="onSubmit(userForm.value)">
                 <div class="container">
-                <!--  <label class="label col-md-3  control-label">UserName</label> -->
                 <div class="form-group style1">
                     <label for="name">Name</label>
                     <input required type="text" #nameRef='ngModel' pattern="[A-Za-z\s]{3,}" class="form-control"
@@ -21,7 +20,6 @@
                         </div>
                     </div>
                 </div> 
-              <!--   <label class="label col-md-3  control-label">Mobile Number</label> -->
               <div class="form-group style1">
             
                     
@@ -38,67 +36,13 @@
                     </div>
                 </div>
 
-                <!--  <label class="label col-md-3  control-label">EmailId</label> -->
-                <!-- <div class="form-group style1">
-                    <label for="email"> Email</label>
-                    <input required type="text" #emailRef='ngModel' class="form-control"
-                        pattern="[a-z][a-z0-9.]+@[a-z]+.(com|net|in)" rows="1" name="email"
-                        placeholder="Enter EmailID" ngModel >
-                    <div *ngIf='emailRef.errors && (emailRef.touched || emailRef.dirty)' class="alert alert-danger">
-
-                        <div [hidden]='!emailRef.errors.required'>
-                            please enter your mail
-                        </div>
-                        <div *ngIf="emailRef.errors.pattern">
-                            mail should be entered correctly
-                        </div>
-                    </div>
-                </div>
-               
- -->
-              <!--   <label class="label col-md-3  control-label">Gender</label> -->
-
-             <!--  <div class="form-group style1">
-                    
-                        <label for="gender"> gender</label>
-                        <label class="radio-inline">
-                            <input type="radio" value="male" name="gender" ngModel  required #genderRef='ngModel' > Male</label>
-                            <label class="radio-inline">
-<input type="radio" value="female" name="gender" ngModel  required #genderRef='ngModel'> Female</label>
-<div *ngIf="genderRef.invalid && genderRef.touched"> 
-    <div [hidden]='!genderRef.errors.required'></div>
-	  Gender required. 
-</div> 
-<div *ngIf="genderRef.errors?.required">gender is required</div> -->
-                            <!-- <input type="radio" value="male" ngModel name="gender" #genderRef="ngModel" [(ngModel)]="model.gender">Male
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" value="female" ngModel name="gender" [(ngModel)]="model.gender">Female
-                        </label> -->
-                    
-                <!-- </div><br> -->
-
-                <!-- <div class="form-group style1">
-                    <label for="dob"> Date of birth</label>
-                    <input required type="date" #dobRef='ngModel' ngModel  min="1950-12-31"  max="2003-12-31"  class="form-control" name="dob" 
-                        placeholder="Enter date of birth" ngModel >
-                    <div *ngIf='dobRef.errors && (dobRef.touched || dobRef.dirty)' class="alert alert-danger">
-                        <div [hidden]='!dobRef.errors.required'>
-                            please enter your dob
-                        </div>
-
-                    </div>
-                </div> -->
-
+              
 
                 <div class="form-group style1">
                     <label for="question">Security Question</label>
                     <select required class="form-control" #questionRef='ngModel' name="securityquestion" ngModel>
                         
-                        <!-- <option  [ngValue]="undefined"  disabled selected>Select your Question</option> -->
-                        <!-- <option value="undefined" selected>Select one category </option>  -->
-                        <!-- <option [ngValue]="undefined" hidden>Select one category</option> -->
-                       <!--  <option hidden [value]=""  selected>Select one category </option> -->
+                    
                        <option value="" disabled selected hidden>Select a question</option>
                         <option>What is your favourite dish  </option>
                         <option>What is your favourite location </option>
@@ -106,8 +50,7 @@
                     <div *ngIf='questionRef.errors && (questionRef.touched || questionRef.dirty)' class="alert alert-danger">
                     <div [hidden]='!questionRef.errors.required'>please select question</div></div>
                 </div>
-               
-<!--  <label class="label col-md-3  control-label">UserName</label> -->
+
 <div class="form-group style1">
     <label for="answer">Answer</label>
                     <input required type="text" #answerRef='ngModel' pattern="[A-Za-z\s]{3,}" class="form-control"
@@ -135,29 +78,17 @@
                                 lowercase letter, and at least 8 or more characters.</div>
                         </div>
                 </div>
-               <!--  <div class="col-md-9">
-                    <input required type="text" #hallticketRef='ngModel' ngModel pattern="[1-9][0-9]{9}" class="form-control"
-                        name="hallticket" placeholder="Enter Valid Hall ticket Number" ngModel >
-                    <div *ngIf='hallticketRef.errors && (hallticketRef.touched || hallticketRef.dirty)' class="alert alert-danger">
-                        <div [hidden]='!hallticketRef.errors.required'>
-                            please enter your Inter Hall Ticket Number
-                        </div>
-                        <div [hidden]='!hallticketRef.errors.pattern'>
-                            hallticket no should be  of 10 digits
-                        </div>
-                    </div>
-                </div> -->
                 
                 <div class="form-group style1">
-                <label for="marks">marks</label>
-                    <input required type="text" #marksRef='ngModel' ngModel pattern="[0-9]+" class="form-control required"
+                <label for="marks">Marks %</label>
+                    <input required type="number" #marksRef='ngModel' ngModel pattern="^(0*100{1,1}\.?((?<=\.)0*)?%?$)|(^0*\d{0,2}\.?((?<=\.)\d*)?%?)$" class="form-control required"
                         name="marks"  placeholder="Enter Marks" ngModel>
                     <div *ngIf='marksRef.errors && (marksRef.touched || marksRef.dirty)' class="alert alert-danger">
                         <div [hidden]='!marksRef.errors.required'>
                             please enter your Marks
                         </div>
                         <div *ngIf="marksRef.errors.pattern">
-                             Marks should be only digits 
+                             Please enter Marks percentage 
                         </div>
                     </div>
                 </div>
@@ -170,8 +101,7 @@
                    
                     <button class="btn btn-info" id="button" type="submit" value="Submit" [disabled]='userForm.invalid'>Register</button>
                         
-<!-- <button class="btn btn-info" (click)="back()">Go Home</button> -->
-                        <!-- <div ><h1>{{message}}</h1></div>  -->
+                        <div ><h3 style="color: rgb(226, 94, 94);">{{message}}</h3></div> 
                         </div>
                      </form>
                     </div>

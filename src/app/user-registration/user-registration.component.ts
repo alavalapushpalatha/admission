@@ -23,7 +23,8 @@ export class UserRegistrationComponent implements OnInit {
         /*   this.router.navigate(['/home']); */
         console.log(this.status);
         this.message="Registered Successfully..."
-        this.router.navigate(['/userLogin']);
+        alert("Successfully registered")
+        this.router.navigate(['/login']);
         }
         else{
           this.message="User is alredy existing"

@@ -3,7 +3,7 @@
 <div >
     <form>
 
-      <form  class="navbar-form navbar-center" action="/action_page.php">
+      <form style="margin-left: 2.5%;" class="navbar-form navbar-center" action="/action_page.php">
         <div class="input-group">
           <input type="text" class="form-control" placeholder=" &#61442; Search" id="search" [(ngModel)]="searchText"
             name="search">
@@ -18,15 +18,15 @@
       <br>
       <br>
       <table [mfData]="feedbackData" #mf="mfDataTable" [mfRowsOnPage]="5">
-      <table class="table table-striped" border="2"  cellspacing="2px" cellpadding="2px" align="center" >
+      <table style="width: 95%;" class="table table-striped" border="2"  cellspacing="2px" cellpadding="2px" align="center" >
 
 
         <tr>
-            <th><i style="color:#fa07e6"><mfDefaultSorter by="userName"><b>User Name</b></mfDefaultSorter></i></th>
-            <th><i style="color:#fa07e6"><mfDefaultSorter by="phoneNo"><b>Mobile Number</b></mfDefaultSorter></i></th>
-            <th><i style="color:#fa07e6"><mfDefaultSorter by="userEmail"><b>Email</b></mfDefaultSorter></i></th>
-            <th><i style="color:#fa07e6"><mfDefaultSorter by="feedback"><b>Feedback</b></mfDefaultSorter></i></th>
-            <th><i style="color:#fa07e6"><mfDefaultSorter by="description"><b>Description</b></mfDefaultSorter></i></th>
+            <th><i style="color:#4807fa"><mfDefaultSorter by="userName"><b>User Name</b></mfDefaultSorter></i></th>
+            <th><i style="color:#4807fa"><mfDefaultSorter by="phoneNo"><b>Mobile Number</b></mfDefaultSorter></i></th>
+            <th><i style="color:#4807fa"><mfDefaultSorter by="userEmail"><b>Email</b></mfDefaultSorter></i></th>
+            <th><i style="color:#4807fa"><mfDefaultSorter by="feedback"><b>Feedback</b></mfDefaultSorter></i></th>
+            <th><i style="color:#4807fa"><mfDefaultSorter by="description"><b>Description</b></mfDefaultSorter></i></th>
             </tr>
 
         <tr id="userBooking" *ngFor="let c of mf.data | filter:searchText ;let i=index">

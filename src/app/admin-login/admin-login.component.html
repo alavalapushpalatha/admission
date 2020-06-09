@@ -13,9 +13,9 @@
                     <td>
                         <div class="form-group">
                             <i class="far fa-user fa-2x"></i> &nbsp; <b style="font-size: large;"> Phone Number</b>
-                            <input required type="text" #phoneRef='ngModel' size="35" id="mobNum" name="mobNum" #mobNum="ngModel"
-                                [(ngModel)]="login.mobNum" pattern="[1-9][0-9]{9}" placeholder="Enter Phone number "
-                                class="form-control" ngModel>
+                            <input required type="text" #phoneRef='ngModel' size="35" id="mobNum" name="mobNum"
+                                #mobNum="ngModel" [(ngModel)]="login.mobNum" pattern="[1-9][0-9]{9}"
+                                placeholder="Enter Phone number " class="form-control" ngModel>
                             <div *ngIf='phoneRef.errors && (phoneRef.touched || phoneRef.dirty)'
                                 class="alert alert-danger">
                                 <div [hidden]='!phoneRef.errors.required'>
@@ -35,8 +35,8 @@
                         <div class="form-group">
                             <i class="fas fa-user-secret fa-2x"></i> &nbsp; <b style="font-size: large;"> Password</b>
                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                            <input type="password" #passwordRef='ngModel' name="password"  id="password" #password="ngModel"
-                            [(ngModel)]="login.password" placeholder="Enter Password"
+                            <input type="password" #passwordRef='ngModel' name="password" id="password"
+                                #password="ngModel" [(ngModel)]="login.password" placeholder="Enter Password"
                                 class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel>
                             <!-- [(ngModel)]="userForm.password" -->
                             <div *ngIf="passwordRef.invalid && (userForm.submitted || passwordRef.touched)"
@@ -49,7 +49,7 @@
                     </td>
                 </tr>
                 <button class="btn btn-primary btn-sm" type="submit" [disabled]='userForm.invalid'
-                    style="color: black">Login</button>
+                    style="color: black;margin-left: 40%;">Login</button>
             </form>
             <div>
                 <p

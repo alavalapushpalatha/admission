@@ -35,6 +35,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 import { UpdateCollegeComponent } from './update-college/update-college.component';
 import {DataTableModule} from 'angular-6-datatable';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {DataTableModule} from 'angular-6-datatable';
     UserProfileComponent,
     UserFooterComponent,
     ForgotPasswordComponent,
-    UpdateCollegeComponent
+    UpdateCollegeComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

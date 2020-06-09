@@ -22,6 +22,7 @@ export class CapService {
 
   logout() {
     sessionStorage.removeItem('username')
+    sessionStorage.removeItem('user')
     sessionStorage.removeItem('userType')
     sessionStorage.clear();
     this.router.navigate(['/carousel'])
@@ -58,6 +59,14 @@ register(user:any){
     this.newcontact=parseInt(this.contact);
     console.log(this.newcontact);
     return this.http.get("http://localhost:8080/profile?phoneNo="+this.newcontact)
+
+  }
+
+  getUserName():any{
+    this.contact=localStorage.getItem("mobile");
+    this.newcontact=parseInt(this.contact);
+    console.log(this.newcontact);
+    return this.http.get("http://localhost:8080/getUserName?phoneNo="+this.newcontact)
 
   }
   setUser(user:User){
@@ -221,7 +230,50 @@ viewpredictedColleges(contactNumber:string,value:string){
 
 
 
+ changePassword(mobNum,curPass,newPass) : Observable<Object>{
+  return this.http.get(`${this.baseUrl}` + `/changeAdminPassword/${mobNum}/${curPass}/${newPass}`);
+}
 
+
+// viewColleges(){
+//   return this.http.get("http://localhost:8080/getAllcolleges");
+// }
+
+viewAll(state:string,city:string,branch:string){
+  return this.http.get("http://localhost:8080/getAll/"+state+"/"+city+"/"+branch);
+  
+}
+viewAllByStateAndCity(state:string,city:string){
+  return this.http.get("http://localhost:8080/getAllByStateAndCity/"+state+"/"+city);
+  
+}
+viewAllByStateAndbranch(state:string,branch:string){
+  return this.http.get("http://localhost:8080/getAllByStateAndBranch/"+state+"/"+branch);
+  
+}
+viewAllByCityAndbranch(city:string,branch:string){
+  return this.http.get("http://localhost:8080/getAllByCityAndBranch/"+city+"/"+branch);
+  
+}
+viewAllByCity(city:string){
+  return this.http.get("http://localhost:8080/getAllByCity/"+city);
+  
+}
+viewAllBybranch(branch:string){
+  return this.http.get("http://localhost:8080/getAllByBranch/"+branch);
+  
+}
+getStates(){
+  return this.http.get("http://localhost:8080/getStates/");
+  
+}
+getCities(){
+  return this.http.get("http://localhost:8080/getCities/");
+  
+}
+viewAllByState(state:string){
+  return this.http.get("http://localhost:8080/getAllByState/"+state); 
+}
 
 
 

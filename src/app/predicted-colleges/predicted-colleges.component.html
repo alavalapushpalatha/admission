@@ -1,10 +1,10 @@
 <body>
     <app-user-navbar></app-user-navbar>
-
-    <div align="center" *ngIf=a>
+    <h3 style="text-align:center"><strong> Predicted Colleges </strong></h3><br>
+    <div style="margin-left: 5%;" *ngIf=a>
 
         <form>
-            <label for="cars">Choose a branch:</label>
+            <label style="color:#4807fa" for="cars">Choose branch:</label>
             <select id="branch" name="branch" #branch="ngModel" (change)="selectBranch(selectedBranch)"
                 [(ngModel)]="selectedBranch">
                 <option value="CIVIL">CIVIL</option>
@@ -14,36 +14,36 @@
                 <option value="EEE">EEE</option>
                 <option value="IT">IT</option>
             </select>
-            <br>
+            <label style="font-size: 15px;color:#7007fa;margin-left: 1000px;" align="right">
+                <strong> Number of Results : {{samples.length}}</strong> 
+            </label>
         </form>
-
-    </div><br>
+      
+    </div>
     <div *ngIf=b>
-        <div style="font-size: 15px;color:#07fa6c;margin-right: 15px;" align="right">
-          <strong> Number of Results : {{samples.length}}</strong> 
-        </div>
-        <table class="table table-striped" align="center"  [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="5" >
+        
+        <table style="width: 90%;" class="table table-striped" align="center"  [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="4" >
             <thead style="font-size: 12px">
                 <tr>
-                    <th><i style="color:#fa07e6">
-                            <mfDefaultSorter by="collegeCode"><b>CollegeCode</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
-                            <mfDefaultSorter by="collegeName"><b>CollegeName</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
+                    <th style="color:#4807fa">
+                            <mfDefaultSorter by="collegeCode"><b>College Code</b></mfDefaultSorter>
+                    </th>
+                    <th style="color:#4807fa" >
+                            <mfDefaultSorter by="collegeName"><b>College Name</b></mfDefaultSorter>
+                        </th>
+                    <th style="color:#4807fa">
                             <mfDefaultSorter by="state"><b>State</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
+                        </th>
+                    <th style="color:#4807fa">
                             <mfDefaultSorter by="city"><b>City</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
+                       </th>
+                    <th style="color:#4807fa">
                             <mfDefaultSorter by="address"><b>Address</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
-                            <mfDefaultSorter by="contactNumber"><b>ContactNumber</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6"><b>BranchCutoff</b></i></th>
+                        </th>
+                    <th style="color:#4807fa">
+                            <mfDefaultSorter by="contactNumber"><b>Contact Number</b></mfDefaultSorter>
+                       </th>
+                    <th style="color:#4807fa"><b>Branch Cutoff %</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -56,9 +56,9 @@
                     <td>{{object.contactNumber}}</td>
                     <td>
                         <div *ngFor="let recipient of object.branchCutoff | keyvalue">
-                        <li *ngIf="selectedBranch == recipient.key">
-                            <b>{{recipient.key}} --> {{recipient.value}}</b>
-                        </li>
+                        <div *ngIf="selectedBranch == recipient.key">
+                            <b>{{recipient.key}} -- {{recipient.value}}</b>
+                        </div>
                     </div>
                     </td>
                 </tr>
@@ -70,34 +70,32 @@
 
     </div>
 
-
+<div *ngIf="samples.length !=0">
     <div *ngIf=c>
-        <div style="font-size: 15px;color:#07fa6c;margin-right: 15px;" align="right">
-            <strong> Number of Results : {{samples.length}}</strong> 
-          </div><br>
-        <table align="center" class="table table-striped" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="5">
+       <br>
+        <table style="width: 95%;" align="center" class="table table-striped" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="5">
             
             <thead style="font-size: 12px">
                 <tr>
-                    <th><i style="color:#fa07e6">
-                            <mfDefaultSorter by="collegeCode"><b>CollegeCode</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
-                            <mfDefaultSorter by="collegeName"><b>CollegeName</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
+                    <th style="color:#4807fa">
+                            <mfDefaultSorter by="collegeCode"><b>College Code</b></mfDefaultSorter>
+                        </th>
+                    <th style="color:#4807fa">
+                            <mfDefaultSorter by="collegeName"><b>College Name</b></mfDefaultSorter>
+                  </th>
+                    <th style="color:#4807fa">
                             <mfDefaultSorter by="state"><b>State</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
+                        </th>
+                    <th style="color:#4807fa">
                             <mfDefaultSorter by="city"><b>City</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
+                        </th>
+                    <th style="color:#4807fa">
                             <mfDefaultSorter by="address"><b>Address</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6">
-                            <mfDefaultSorter by="contactNumber"><b>ContactNumber</b></mfDefaultSorter>
-                        </i></th>
-                    <th><i style="color:#fa07e6"><b>BranchCutoff</b></i></th>
+                        </th>
+                    <th style="color:#4807fa">
+                            <mfDefaultSorter by="contactNumber"><b>Contact Number</b></mfDefaultSorter>
+                        </th>
+                    <th style="color:#4807fa"><b>Branch Cutoff %</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -109,9 +107,9 @@
                     <td>{{object.address}}</td>
                     <td>{{object.contactNumber}}</td>
                     <td>
-                        <li *ngFor="let recipient of object.branchCutoff | keyvalue">
-                            {{recipient.key}} --> {{recipient.value}}
-                        </li>
+                        <div *ngFor="let recipient of object.branchCutoff | keyvalue">
+                            {{recipient.key}} -- {{recipient.value}}
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -125,8 +123,11 @@
             </tfoot>
         </table>
     </div>
+</div>
 
-
+    <div style="height: 400px;" align="center" *ngIf="samples.length ==0">
+        <h4 style="color: red;">No predicted Colleges Found for the selected branch</h4>
+    </div>
 
 </body>
 <app-user-footer></app-user-footer>

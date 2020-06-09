@@ -49,21 +49,23 @@
                     </td>
                 </tr>
                 <button class="btn btn-primary btn-sm" type="submit" [disabled]='userForm.invalid'
-                    style="color: black">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a routerLink="/forgotPassword" style="color:bisque" data-toggle="tooltip" title="To Reset Password">Forgot
+                    style="color: black" href="#">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a routerLink="/forgotPassword" style="color:bisque" data-toggle="tooltip"
+                    title="To Reset Password">Forgot
                     Password?</a>
             </form>
             <br>
+            
+        </div>
+    </table>
+    <table align="center">
+        <a routerLink="/register" style="color:bisque" data-toggle="tooltip" title="For User Registration"> New User?
+            Click
+            Here</a>
             <div>
                 <p
                     style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align: center;color: red">
                     {{message}}</p>
             </div>
-        </div>
-    </table>
-    <table align="center">
-        <a routerLink="/register" style="color:bisque" data-toggle="tooltip" title="For User Registration"> New User? Click
-            Here</a>
-        
     </table>
 </body>

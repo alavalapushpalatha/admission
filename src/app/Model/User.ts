@@ -1,6 +1,6 @@
 export class User{
 	phoneNo:Number
-	name:String
+	name:string
     email:String;
 	gender:String
 	dob:String

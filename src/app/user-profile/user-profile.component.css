@@ -1,4 +1,4 @@
-.dropbtn {
+/* .dropbtn {
     background-color: rgb(5, 19, 5);
     color: white;
     padding: 16px;
@@ -33,4 +33,18 @@
   
   .dropdown:hover .dropbtn {background-color: #633e8e;}
 
- 
+  */
+
+  body{
+    background-image:url(src\assets\images\profile.webp);
+    height: 130vh;
+    background-size: cover;
+    background-position: center;
+ }
+ .button_css
+ {
+     background-color:maroon;
+     color: white;
+     width: 90px;
+     height: 30px;
+ }

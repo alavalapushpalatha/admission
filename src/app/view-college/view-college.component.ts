@@ -17,10 +17,25 @@ page=1;
   samples:College[]=[];
   CollegesList:College[]=[];
   Location:any=["Hyderabad","Warangal"];
+  selectedBranch:string;
+  selectState:string;
+  selectCity:string;
+  searchTerm:string;
+  states:any[]=[];
+  cities:any[]=[];
   constructor(private service: CapService,private router: Router) { }
 
   ngOnInit( ): void {
    this.service.viewColleges().subscribe(data=>this.CollegesList=data);
+
+   this.service.getStates().subscribe((datab:any)=>{
+    /*  console.log(datab); */
+     this.states=datab;
+   })
+   this.service.getCities().subscribe((datac:any)=>{
+   /*  console.log(datac); */
+    this.cities=datac;
+  })
 
   }
 
@@ -87,6 +102,59 @@ page=1;
       this.CollegesList=this.CollegesList.sort(function(a,b){
         return a.contactNumber.localeCompare(b.contactNumber)
       })
+  }
+
+
+  selectedState(state) {
+
+
+    if (this.selectState != null && this.selectCity == null && this.selectedBranch == null) {
+      this.service.viewAllByState(this.selectState).subscribe((data: any) => {
+
+        this.CollegesList = data;
+      })
+    }
+
+    if (this.selectCity != null && this.selectState == null && this.selectedBranch == null) {
+      this.service.viewAllByCity(this.selectCity).subscribe((data: any) => {
+
+        this.CollegesList = data;
+      })
+
+    }
+    if (this.selectedBranch != null && this.selectCity == null && this.selectState == null) {
+      this.service.viewAllBybranch(this.selectedBranch).subscribe((data: any) => {
+
+        this.CollegesList = data;
+      })
+    }
+
+    if (this.selectState != null && this.selectedBranch != null) {
+      this.service.viewAllByStateAndbranch(this.selectState, this.selectedBranch).subscribe((data: any) => {
+        console.log(data);
+        this.CollegesList = data
+      })
+    }
+    if (this.selectCity != null && this.selectedBranch != null) {
+      this.service.viewAllByCityAndbranch(this.selectCity, this.selectedBranch).subscribe((data: any) => {
+        console.log(data);
+        this.CollegesList = data
+      })
+    }
+    if (this.selectState != null && this.selectCity != null) {
+      this.service.viewAllByStateAndCity(this.selectState, this.selectCity).subscribe((data: any) => {
+        console.log(data);
+        this.CollegesList = data
+      })
+
+    }
+    if (this.selectState != null && this.selectCity != null && this.selectedBranch != null) {
+      this.service.viewAll(this.selectState, this.selectCity, this.selectedBranch).subscribe((data: any) => {
+        console.log(data);
+        this.CollegesList = data
+      })
+    }
+
   }
 
 }

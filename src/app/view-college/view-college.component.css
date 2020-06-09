@@ -122,3 +122,23 @@
   {
   margin-left: 63px;
   }
+  input[type=text], input[type=email], input[type=number] {
+    width: 15%;
+    padding: 10px;
+    /* margin: 5px 22px 0; */
+    /* display: inline-block; */
+    border: none;
+    /* background: #f1f1f1; */
+    align-content: center;
+  }
+ 
+  select{
+    align-items: center;
+    width: 15%;
+    padding: 10px;
+    display: inline-block;
+    /* border: black; */
+    /* background: rgba(255,255,255,0.3); */
+  }
+
+  

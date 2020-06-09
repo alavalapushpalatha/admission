@@ -1,15 +1,26 @@
-
 <div id="navg">
-    <nav class="navbar" class="navbar navbar-dark bg-dark mb-5">
-      <a class="navbar-brand" routerLink="/carousel" href="/#"> <i class="fa fa-home"aria-hidden="true"></i>Home</a>
-      <a class="navbar-brand" routerLink="/aboutUs" href="/footernav.component.html"><i class="fa fa-users"></i>About Us</a>
-      <div class="navbar-expand mr-auto">
-        
-      </div>
-      
+  <nav class="navbar" class="navbar navbar-dark bg-dark mb-5">
+    <a class="navbar-brand" routerLink="/carousel" href="/#"> <i class="fa fa-home" aria-hidden="true"></i> CAPS</a>
+    <a class="navbar-brand" routerLink="/aboutUs" href="/footernav.component.html"><i class="fa fa-users"></i> About
+      Us</a>
+    <div class="navbar-expand mr-auto">
 
-          <hr>
-          <div class="dropdown">
+    </div>
+
+
+
+    <button class="dropbtn" routerLink="/register">
+     <b> Register </b></button>
+    <div class="dropdown">
+      <button class="dropbtn">
+      <b> Login</b></button>
+      <div class="dropdown-content">
+        <a routerLink="/adminLogin">As Admin</a>
+        <a routerLink="/login">As Student</a>
+      </div>
+    </div>
+
+    <!-- <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                Profile
               </button>
@@ -28,10 +39,10 @@
                   </li>
                 </ul>
         
-  </div>
-    </nav>
-  </div>
-  
+  </div> -->
+  </nav>
+</div>
+
 
 
 

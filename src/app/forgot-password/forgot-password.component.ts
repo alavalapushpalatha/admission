@@ -19,11 +19,12 @@ export class ForgotPasswordComponent implements OnInit {
         if(this.status)
           {
             this.message="Valid user";
+            alert("Password changed successfully")
             this.router.navigate(['/login']);
 
           }
         else{
-          this.message="InValid user";
+          this.message="Invalid User";
         }
       });
     }

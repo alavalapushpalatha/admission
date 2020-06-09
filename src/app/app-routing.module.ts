@@ -19,6 +19,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { UpdateCollegeComponent } from './update-college/update-college.component';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { AdminGuard } from './admin.guard';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,9 @@ const routes: Routes = [
   {path :'login', component:UserLoginComponent},
   {path :'adminLogin', component:AdminLoginComponent},
   {path :'register', component:UserRegistrationComponent},
+  {path :'forgotPassword', component:ForgotPasswordComponent},
+  {path :'updateCollege', component:UpdateCollegeComponent,canActivate:[AdminGuard]},
+  {path :'resetPassword', component:ResetPasswordComponent,canActivate:[AdminGuard]},
   {path :'viewCollege', component:ViewCollegeComponent,canActivate:[AdminGuard]},
   {path :'addCollege', component:AddCollegeComponent,canActivate:[AdminGuard]},
   {path :'viewStudents', component:ViewStudentsComponent,canActivate:[AdminGuard]},
@@ -38,11 +42,8 @@ const routes: Routes = [
   {path :'allColleges', component:AllCollegesComponent,canActivate:[AuthGaurdService]},
   {path :'giveFeedback', component:GiveFeedbackComponent,canActivate:[AuthGaurdService]},
   {path :'userProfile', component:UserProfileComponent,canActivate:[AuthGaurdService]},
-  {path :'forgotPassword', component:ForgotPasswordComponent},
-  {path :'updateCollege', component:UpdateCollegeComponent,canActivate:[AdminGuard]},
-
-
-
+  
+  
 ];
 
 @NgModule({
