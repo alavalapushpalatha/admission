@@ -39,10 +39,7 @@
                             <div *ngIf="passwordRef.invalid && (userForm.submitted || passwordRef.touched)"
                                 class="alert alert-danger">
                                 <div *ngIf="passwordRef.errors.required"> Password is required. </div>
-                                <div *ngIf="passwordRef.errors.pattern"> Must contain at least one number and one
-                                    uppercase
-                                    and
-                                    lowercase letter, and at least 8 or more characters.</div>
+                                <div *ngIf="passwordRef.errors.pattern"> Case sensitive & Min 8 char</div>
                             </div>
 
                         </div>

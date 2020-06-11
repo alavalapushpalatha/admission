@@ -43,7 +43,7 @@ export class AllCollegesComponent implements OnInit {
 
   selectedState(state) {
 
-
+console.log(this.selectState)
     if (this.selectState != null && this.selectCity == null && this.selectedBranch == null) {
       this.service.viewAllByState(this.selectState).subscribe((data: any) => {
 

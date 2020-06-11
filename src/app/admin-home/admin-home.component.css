@@ -1,7 +1,13 @@
 body{
-    background-image: url(src\assets\images\newStudent.jpg);
-    background-size: cover;
+    background-image: url(src\assets\images\admin2.jpg);
+    background-size: 70%;
     background-position: center;
     height: 100vh;
     
  }
+ /* body{ 
+    background-image: url(src\assets\images\admin2.jpg);
+    background-size: 70%;
+    background-position: center;
+    height: 100vh;
+    }  */

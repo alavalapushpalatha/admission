@@ -1,6 +1,9 @@
 <body>
     <app-user-navbar></app-user-navbar>
     <h3 style="text-align:center"><strong> Predicted Colleges </strong></h3><br>
+    <h6 style="text-align:center;color:dimgrey;font-size:small">
+        <marquee align="center" direction="left" width="50%" style="color:black;">Predicted Colleges are based on your marks %</marquee>
+      </h6><br>
     <div style="margin-left: 5%;" *ngIf=a>
 
         <form>
@@ -73,7 +76,7 @@
 <div *ngIf="samples.length !=0">
     <div *ngIf=c>
        <br>
-        <table style="width: 95%;" align="center" class="table table-striped" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <table style="width: 95%;" align="center" class="table table-striped" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="4">
             
             <thead style="font-size: 12px">
                 <tr>

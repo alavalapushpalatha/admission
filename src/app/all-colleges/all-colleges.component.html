@@ -6,7 +6,7 @@
         <label for="cars" style="color: rgb(13, 117, 235);">Choose State:</label>
         <select id="state" name="state" #state="ngModel" (change)="selectedState(selectState)" [(ngModel)]="selectState">
             <option></option>
-            <option *ngFor="let s of states">{{s}}</option>
+            <option *ngFor="let s of states ">{{s}}</option>
         </select>
         &nbsp; &nbsp;  &nbsp; &nbsp;
         <label for="cars" style="color: rgb(13, 117, 235);">Choose City:</label>
