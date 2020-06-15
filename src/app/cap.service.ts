@@ -25,7 +25,7 @@ export class CapService {
     sessionStorage.removeItem('user')
     sessionStorage.removeItem('userType')
     sessionStorage.clear();
-    this.router.navigate(['/carousel'])
+    this.router.navigate(['/mainHome'])
   }
 
   contact:any;

@@ -2,6 +2,7 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    align-content: center;
   }
   
   td, th {
@@ -13,7 +14,14 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
-
+  body{
+    background-image: url(src\assets\images\91.jpg);
+    background-size: 100%;
+    background-position: center;
+    height: 100vh;
+ 
+    
+ }
   /* table {
     margin: 5px 22px 5px;
     width: 100%;

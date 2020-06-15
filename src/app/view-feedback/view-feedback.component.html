@@ -1,24 +1,26 @@
+<body>
 <app-navbar></app-navbar>
 
 <div >
-    <form>
+  <h2 style="margin-left: 33%;">View Feedback</h2>
+    <form style="margin-left: 4%;">
 
-      <form style="margin-left: 2.5%;" class="navbar-form navbar-center" action="/action_page.php">
-        <div class="input-group">
+      <form  class="navbar-form navbar-center" action="/action_page.php">
+        <div>
           <input type="text" class="form-control" placeholder=" &#61442; Search" id="search" [(ngModel)]="searchText"
             name="search">
 
-          <div class="input-group-btn">
+          <!-- <div class="input-group-btn">
             <button class="btn btn-default" type="button">
               <i class="glyphicon glyphicon-search"></i>
             </button>
-          </div>
+          </div> -->
         </div>
       </form>
       <br>
       <br>
       <table [mfData]="feedbackData" #mf="mfDataTable" [mfRowsOnPage]="5">
-      <table style="width: 95%;" class="table table-striped" border="2"  cellspacing="2px" cellpadding="2px" align="center" >
+      <table  style="width: 70%;font-size: 18px;border-width: 5px;"  border="2"  cellspacing="2px" cellpadding="2px" >
 
 
         <tr>
@@ -38,10 +40,11 @@
           </tr>
 
       </table>
-      <div align="center">
+      <div style="margin-left: 33%;" >
       <mfBootstrapPaginator></mfBootstrapPaginator>
     </div>
 
     </table>
     </form> 
   </div>
+</body>

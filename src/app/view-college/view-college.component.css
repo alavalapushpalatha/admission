@@ -10,7 +10,7 @@
   }
   .row-fluid
   {
-  margin-top: 5%;
+  /* margin-top: 5%; */
   margin-left: 12%;
   }
   
@@ -140,5 +140,11 @@
     /* border: black; */
     /* background: rgba(255,255,255,0.3); */
   }
+  body{
+    background-image: url(src\assets\images\hats.jpg);
+    /* height: 100vh; */
+    background-size: cover;
+    background-position: center;
+ }
 
   

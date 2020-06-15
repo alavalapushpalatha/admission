@@ -1,5 +1,5 @@
  .header {
-    background-color: darken(#398B93, 5%);
+    background-color: darken(rgb(149, 207, 212), 5%);
     color: white;
     font-size: 1.5em;
     padding: 1rem;
@@ -7,21 +7,33 @@
     text-transform: uppercase;
  }
  body{
-    /* background-image: url(src/assets/images/91.jpg); */
-    background-color: lighten(rgb(67, 119, 124), 30%);
+    background-image: url(src/assets/images/91.jpg);
+    /* background-color: lighten(rgb(158, 22, 33), 30%); */
     box-sizing: border-box; 
     background-size: cover;
     background-position: center;
-    height: 100%;
+    font-family: outline;
+    align-content: center;
+    /* background-color:rgb(155, 158, 201); */
+    /* color: floralwhite; */
+    /* background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(src\assets\images\cambridge.jpg); */
+    /* background-color: rgba(13, 30, 45, 0.6); */
 
     
  }
+
+ /* .tab{
+    background-color: white;
+ } */
+ th, td {
+   text-align: center;
+ }
  
- tr:nth-child(even) {background-color: #398B93,5%;}
- tr:nth-child(odd) {background-color: #f2f2f2;}
+ /* tr:nth-child(even) {background-color: #398B93,5%;}
+ tr:nth-child(odd) {background-color: #f2f2f2;} */
  input[type=text], input[type=email], input[type=number] {
    width: 50%;
-   padding: 10px;
+   /* padding: 10px; */
    /* margin: 5px 22px 0; */
    /* display: inline-block; */
    border: none;
@@ -35,7 +47,13 @@
    padding: 10px;
    display: inline-block;
    border: none;
-   background: #f1f1f1;
+   color: black;
+   background: white;
+ }
+
+ .pagination{
+   color: black;
+
  }
  
  /* table{

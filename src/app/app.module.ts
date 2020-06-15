@@ -36,6 +36,10 @@ import { MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, Mat
 import { UpdateCollegeComponent } from './update-college/update-college.component';
 import {DataTableModule} from 'angular-6-datatable';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ExportAsModule } from 'ngx-export-as';
+import { ExportDirective } from './_directives/export.directive';
+import { MainHomeComponent } from './main-home/main-home.component';
+import { HomeNavComponent } from './home-nav/home-nav.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +65,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     UserFooterComponent,
     ForgotPasswordComponent,
     UpdateCollegeComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ExportDirective,
+    MainHomeComponent,
+    HomeNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +92,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatSortModule,
     MatPaginatorModule,
     DataTableModule,
+    ExportAsModule,
   ],
   bootstrap: [AppComponent]
 })

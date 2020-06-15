@@ -20,10 +20,11 @@ import { UpdateCollegeComponent } from './update-college/update-college.componen
 import { AuthGaurdService } from './auth-gaurd.service';
 import { AdminGuard } from './admin.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MainHomeComponent } from './main-home/main-home.component';
 
 
 const routes: Routes = [
-  {path : '',redirectTo: '/carousel', pathMatch:'full'}, 
+  {path : '',redirectTo: '/mainHome', pathMatch:'full'}, 
   {path :'aboutUs', component: FooternavComponent},
   {path :'carousel', component:CorouselbarComponent},
   {path :'login', component:UserLoginComponent},
@@ -42,6 +43,8 @@ const routes: Routes = [
   {path :'allColleges', component:AllCollegesComponent,canActivate:[AuthGaurdService]},
   {path :'giveFeedback', component:GiveFeedbackComponent,canActivate:[AuthGaurdService]},
   {path :'userProfile', component:UserProfileComponent,canActivate:[AuthGaurdService]},
+  {path :'mainHome', component:MainHomeComponent},
+
   
   
 ];

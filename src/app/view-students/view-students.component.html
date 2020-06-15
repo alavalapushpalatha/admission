@@ -1,24 +1,21 @@
+<body>
 <app-navbar></app-navbar>
  <div >
     <form>
-
+      <h2 align="center">View Students</h2>
       <form style="margin-left: 2.5%;" class="navbar-form navbar-center" action="/action_page.php">
-        <div class="input-group">
+        <div>
           <input type="text" class="form-control" placeholder=" &#61442; Search" id="search" [(ngModel)]="searchText"
             name="search">
 
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-          </div>
+         
         </div>
       </form>
       <br>
       <br>
 
-      <table [mfData]="userData" #mf="mfDataTable" [mfRowsOnPage]="5">
-      <table  style="width: 95%;" border="2"  cellspacing="2px" cellpadding="2px" align="center" >
+      <table style="font-size: 18px;"   [mfData]="userData" #mf="mfDataTable" [mfRowsOnPage]="5">
+      <table style="width: 95%;" border="2"  cellspacing="2px" cellpadding="2px" align="center" >
 
         <tr>
             <th><i style="color:#4807fa"><mfDefaultSorter by="phoneNo"><b>Mobile Number</b></mfDefaultSorter></i></th>
@@ -46,3 +43,4 @@
     </table>
     </form> 
   </div>
+  </body>
