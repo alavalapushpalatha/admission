@@ -11,19 +11,19 @@
   <form style="margin-left: 3%">
 
     <label for="cars" style="color: antiquewhite">Choose State :</label>&nbsp; &nbsp;  
-    <select id="state" name="state" #state="ngModel"  style="opacity: 30%;color: black;" (change)="selectedState(selectState)" [(ngModel)]="selectState">
+    <select id="state" name="state" #state="ngModel"  style="opacity: 60%;color: black;" (change)="selectedState(selectState)" [(ngModel)]="selectState">
         <option></option>
         <option *ngFor="let s of states" >{{s}}</option>
     </select>
     &nbsp; &nbsp;  &nbsp; &nbsp;
     <label for="cars" style="color: antiquewhite">Choose City :</label>&nbsp; &nbsp;  
-    <select id="city" name="city" #city="ngModel" style="opacity: 30%;color: black;" (change)="selectedState(selectCity)" [(ngModel)]="selectCity">
+    <select id="city" name="city" #city="ngModel" style="opacity: 60%;color: black;" (change)="selectedState(selectCity)" [(ngModel)]="selectCity">
       <option></option>
         <option *ngFor="let c of cities">{{c}}</option>
     </select>
     &nbsp; &nbsp;  &nbsp; &nbsp;
     <label for="cars" style="color: antiquewhite">Choose a branch :</label>&nbsp; &nbsp;  
-    <select id="branch" name="branch" #branch="ngModel" style="opacity: 30%;color: black;" (change)="selectedState(selectedBranch)" [(ngModel)]="selectedBranch">
+    <select id="branch" name="branch" #branch="ngModel" style="opacity: 60%;color: black;" (change)="selectedState(selectedBranch)" [(ngModel)]="selectedBranch">
         <option value="CIVIL">CIVIL</option>
         <option value="MECH">MECH</option>
         <option value="CSE">CSE</option>
@@ -36,7 +36,7 @@
     </div>
     <div style="margin-left: 10px;" class="input-group">
       <h4><b style="color: azure">Search :&nbsp;</b></h4>
-      <input placeholder="Search" class="form-control-input" style="text-align:right; opacity: 30%" align="center" type="text" [(ngModel)]="search">
+      <input placeholder="Search" class="form-control-input" style="text-align:right; opacity: 60%" align="center" type="text" [(ngModel)]="search">
 
       <ul class="item_sorting">
         <li>

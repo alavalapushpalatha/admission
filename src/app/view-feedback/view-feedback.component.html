@@ -1,8 +1,8 @@
 <body>
 <app-navbar></app-navbar>
 
-<div >
-  <h2 style="margin-left: 33%;">View Feedback</h2>
+<div ><br><br><br>
+  <!-- <h2 style="margin-left: 33%;">View Feedback</h2> -->
     <form style="margin-left: 4%;">
 
       <form  class="navbar-form navbar-center" action="/action_page.php">
@@ -24,11 +24,11 @@
 
 
         <tr>
-            <th><i style="color:#4807fa"><mfDefaultSorter by="userName"><b>User Name</b></mfDefaultSorter></i></th>
-            <th><i style="color:#4807fa"><mfDefaultSorter by="phoneNo"><b>Mobile Number</b></mfDefaultSorter></i></th>
+            <th><mfDefaultSorter by="userName"><b>User Name</b></mfDefaultSorter></th>
+            <th><mfDefaultSorter by="phoneNo"><b>Mobile Number</b></mfDefaultSorter></th>
             <!-- <th><i style="color:#4807fa"><mfDefaultSorter by="userEmail"><b>Email</b></mfDefaultSorter></i></th> -->
-            <th><i style="color:#4807fa"><mfDefaultSorter by="feedback"><b>Feedback</b></mfDefaultSorter></i></th>
-            <th><i style="color:#4807fa"><mfDefaultSorter by="description"><b>Description</b></mfDefaultSorter></i></th>
+            <th><mfDefaultSorter by="feedback"><b>Feedback</b></mfDefaultSorter></th>
+            <th><mfDefaultSorter by="description"><b>Description</b></mfDefaultSorter></th>
             </tr>
 
         <tr id="userBooking" *ngFor="let c of mf.data | filter:searchText ;let i=index">

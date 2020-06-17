@@ -2,20 +2,20 @@
     <app-user-navbar></app-user-navbar>
 
     <h3 style="text-align:center"><strong> All Colleges </strong></h3><br>
-    <form style="margin-left: 15%">
-        <label for="cars"style="color: rgb(13, 117, 235);font-size: 17px;">Choose State:</label>
+    <form style="margin-left: 13%">
+        <label for="cars"style="font-size: 17px;">Choose State:</label>
         <select id="state" name="state" #state="ngModel" (change)="selectedState(selectState)" [(ngModel)]="selectState">
             <option></option>
             <option *ngFor="let s of states ">{{s}}</option>
         </select>
         &nbsp; &nbsp;  &nbsp; &nbsp;
-        <label for="cars"style="color: rgb(13, 117, 235);font-size: 17px;">Choose City:</label>
+        <label for="cars"style="font-size: 17px;">Choose City:</label>
         <select id="city" name="city" #city="ngModel" (change)="selectedState(selectCity)" [(ngModel)]="selectCity">
           <option></option>
             <option *ngFor="let c of cities">{{c}}</option>
         </select>
         &nbsp; &nbsp;  &nbsp; &nbsp;
-        <label for="cars" style="color: rgb(13, 117, 235);font-size: 17px;">Choose a branch:</label>
+        <label for="cars" style="font-size: 17px;">Choose a branch:</label>
         <select  id="branch" name="branch" #branch="ngModel" (change)="selectedState(selectedBranch)" [(ngModel)]="selectedBranch">
             <option value="CIVIL">CIVIL</option>
             <option value="MECH">MECH</option>
@@ -28,32 +28,32 @@
       </form><br><br>
 
       <div *ngIf="samples.length !=0">
-       
-    <table class="tab" style="width: 95%;align-content: center;" border="2" align="center" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3">
+       <table  [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3">
+    <table  style="width: 95%;margin-left: 25%;" border="2" align="center">
         <thead style="font-size: 17px">
             <tr>
-                <th style="color:#4807fa">
+                <th >
                         <mfDefaultSorter by="collegeCode"><b>College Code</b></mfDefaultSorter>
                 </th>
-                <th style="color:#4807fa" >
+                <th >
                         <mfDefaultSorter by="collegeName"><b>College Name</b></mfDefaultSorter>
                     </th>
-                <th style="color:#4807fa">
+                <th >
                         <mfDefaultSorter by="state"><b>State</b></mfDefaultSorter>
                     </th>
-                <th style="color:#4807fa">
+                <th >
                         <mfDefaultSorter by="city"><b>City</b></mfDefaultSorter>
                    </th>
-                <th style="color:#4807fa">
+                <th >
                         <mfDefaultSorter by="address"><b>Address</b></mfDefaultSorter>
                     </th>
-                <th style="color:#4807fa">
+                <th>
                         <mfDefaultSorter by="contactNumber"><b>Contact Number</b></mfDefaultSorter>
                    </th>
-                <th style="color:#4807fa"><b>Branch Cutoff %</b></th>
+                <th ><b>Branch Cutoff %</b></th>
             </tr>
         </thead>
-        <tbody  style="font-size: 17px">
+        <tbody >
             <tr *ngFor="let object of mf.data">
                 <td>{{object.collegeCode}}</td>
                 <td>{{object.collegeName}}</td>
@@ -64,20 +64,20 @@
                 <td>
                     <div *ngFor="let recipient of object.branchCutoff | keyvalue">
                         {{recipient.key}} -- {{recipient.value}}
-                    </div><br>
+                    </div>
                 </td>
             </tr>
         </tbody>
      
     </table>
-    <table align="center" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3">
-        <tr>
-            <td >
+    <div style="margin-left: 45%;" align="center">
+       
+            
                 <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
-    </table>
-   
+            
+     
+    </div>
+</table>
 </div>
 <div style="height: 400px;" align="center" *ngIf="samples.length ==0">
     <h4 style="color: red;">No colleges found for the selected filter</h4>

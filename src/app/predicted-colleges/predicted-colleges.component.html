@@ -4,13 +4,13 @@
     <h6 style="text-align:center;color:dimgrey;font-size:small">
         <marquee align="center" direction="left" width="50%" style="color:black;">Predicted Colleges are based on your marks %</marquee>
       </h6><br>
-       <div style="margin-right: 110px;" align="right"><button type="button" [appExport]="exportSamples" fileName="PredictedColleges" class="btn btn-success">
+       <div style="margin-right: 210px;" align="right"><button type="button" [appExport]="exportSamples" fileName="PredictedColleges" class="btn btn-success">
         Export
       </button></div>
     <div style="margin-left: 5%;" *ngIf=a>
 
         <form>
-            <label style="color:#4807fa;font-size: 17px;margin-left: 4%;" for="cars">Choose branch:</label>
+            <label style="font-size: 17px;margin-left: 15%;" for="cars">Choose branch:</label>
             <select id="branch" name="branch" #branch="ngModel" (change)="selectBranch(selectedBranch)"
                 [(ngModel)]="selectedBranch">
                 <option value="CIVIL">CIVIL</option>
@@ -20,7 +20,7 @@
                 <option value="EEE">EEE</option>
                 <option value="IT">IT</option>
             </select>
-            <label style="font-size: 15px;color:#7007fa;margin-left: 930px;" align="right">
+            <label style="font-size: 15px;margin-left: 830px;" align="right">
                 <strong> Number of Results : {{samples.length}}</strong>    
             </label>
            
@@ -28,29 +28,29 @@
      
     </div>
     <div  class="container" id="content" *ngIf=b>
-        
-        <table style="width: 95%;" border="2" align="center"  [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3" >
+        <table   [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3" >
+        <table style="width: 95%;margin-left: 20%;" border="2" align="center">
             <thead style="font-size: 17px">
                 <tr>
-                    <th style="color:#4807fa">
+                    <th >
                             <mfDefaultSorter by="collegeCode"><b>College Code</b></mfDefaultSorter>
                     </th>
-                    <th style="color:#4807fa" >
+                    <th >
                             <mfDefaultSorter by="collegeName"><b>College Name</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="state"><b>State</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="city"><b>City</b></mfDefaultSorter>
                        </th>
-                    <th style="color:#4807fa">
+                    <th >
                             <mfDefaultSorter by="address"><b>Address</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="contactNumber"><b>Contact Number</b></mfDefaultSorter>
                        </th>
-                    <th style="color:#4807fa"><b>Branch Cutoff %</b></th>
+                    <th ><b>Branch Cutoff %</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -72,41 +72,42 @@
             </tbody>
 
         </table>
-        <table align="center" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3">
-            <tr>
-                <td class="pagination">
+        <div  style="margin-left: 35%;" align="center">
+           
+                
                     <mfBootstrapPaginator></mfBootstrapPaginator>
-                </td>
-            </tr>
-           </table>
+         
+        </div>
+        </table>
     </div>
 
 <div   *ngIf="samples.length !=0">
     <div class="container" id="content" *ngIf=c>
        <br>
-        <table id="tab" style="width: 95%;" border="2" align="center" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3">
+       <table   [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3" >
+        <table id="tab" style="width: 95%;margin-left: 20%;" border="2" align="center">
             
             <thead style="font-size: 17px">
                 <tr>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="collegeCode"><b>College Code</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th >
                             <mfDefaultSorter by="collegeName"><b>College Name</b></mfDefaultSorter>
                   </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="state"><b>State</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="city"><b>City</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="address"><b>Address</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa">
+                    <th>
                             <mfDefaultSorter by="contactNumber"><b>Contact Number</b></mfDefaultSorter>
                         </th>
-                    <th style="color:#4807fa"><b>Branch Cutoff %</b></th>
+                    <th><b>Branch Cutoff %</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -126,12 +127,13 @@
             </tbody>
            
         </table>
-       <table align="center" [mfData]="samples" #mf="mfDataTable" [mfRowsOnPage]="3">
-        <tr>
-            <td class="pagination">
+       <div style="margin-left: 35%;" align="center" >
+       
+           
                 <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
-        </tr>
+            
+       
+       </div>
        </table>
     </div>
 </div>
@@ -139,30 +141,6 @@
     <div style="height: 400px;" align="center" *ngIf="samples.length ==0">
         <h4 style="color: red;">No predicted Colleges Found for the selected branch</h4>
     </div>
-
-
-   
-
-
-    <!-- <div class="container">  
-        <h1>This is an Angular App!</h1>  
-        <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()">  
-        <br/><br/>  
-        <div class="container" id="content" #content>  
-            <table class="table table-dark">  
-                <tr>  
-                    <th>Id</th>  
-                    <th>Name</th>  
-                    <th>Salary</th>  
-                </tr>  
-                <tr *ngFor="let item of Data">  
-                    <th>{{item.Id}}</th>  
-                    <th>{{item.Name}}</th>  
-                    <th>{{item.Salary}}</th>  
-                </tr>  
-            </table>  
-        </div>  
-    </div>   -->
 
 
 </body>

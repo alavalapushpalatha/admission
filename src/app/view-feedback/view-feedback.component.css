@@ -8,13 +8,24 @@ table {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+
+  }
+  td{
+    background-color: lightblue;
+    color: black;
+    padding: 8px;
+  }
+  th{
+    background-color: black;
+    color: white;
+    padding: 12px;
   }
   
   /* tr:nth-child(even) {
     background-color: #dddddd;
   } */
   body{
-    background-image: url(src\assets\images\\viewFeedback1.jpg);
+    background-image: url(src\assets\images\\feedback6.jpg);
     background-size: 100%;
     background-position: center;
     background-color:#dddddd;

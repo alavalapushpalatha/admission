@@ -364,7 +364,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 #hero .carousel-item::before {
   content: '';
-  background-color: rgba(13, 30, 45, 0.6); 
+  /* background-color: rgba(13, 30, 45, 0.6);  */
   position: absolute;
   height: 100%;
   width: 100%;
@@ -401,7 +401,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 #hero h3 {
-  color: #fff;
+  color: maroon;
   margin-bottom: 30px;
   font-size: 36px;
   font-weight: 700;
@@ -412,7 +412,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-size: 28px;
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
-  color: #fff;
+  color: maroon;
 }
 
 #hero .carousel-inner .carousel-item {

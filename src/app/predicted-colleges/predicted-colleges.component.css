@@ -23,6 +23,16 @@
   color: black;
 
 }
+td{
+  background-color: lightblue;
+  color: black;
+  padding: 8px;
+}
+th{
+  background-color: black;
+  color: white;
+  padding: 12px;
+}
 th, td {
   text-align: center;
 }

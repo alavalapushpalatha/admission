@@ -1,18 +1,11 @@
- .header {
-    background-color: darken(rgb(149, 207, 212), 5%);
-    color: white;
-    font-size: 1.5em;
-    padding: 1rem;
-    text-align: center;
-    text-transform: uppercase;
- }
+
  body{
-    background-image: url(src/assets/images/91.jpg);
+    background-image: url(src/assets/images/cambridge.jpg);
     /* background-color: lighten(rgb(158, 22, 33), 30%); */
     box-sizing: border-box; 
     background-size: cover;
     background-position: center;
-    font-family: outline;
+    /* font-family: outline; */
     align-content: center;
     /* background-color:rgb(155, 158, 201); */
     /* color: floralwhite; */
@@ -21,12 +14,22 @@
 
     
  }
-
+ td{
+   background-color: lightblue;
+   color: black;
+   padding: 8px;
+ }
+ th{
+   background-color: black;
+   color: white;
+   padding: 12px;
+ }
  /* .tab{
     background-color: white;
  } */
  th, td {
    text-align: center;
+
  }
  
  /* tr:nth-child(even) {background-color: #398B93,5%;}
