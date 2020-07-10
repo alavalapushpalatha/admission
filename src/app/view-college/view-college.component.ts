@@ -3,7 +3,7 @@ import { CapService } from '../cap.service';
 import { Router } from '@angular/router';
 import { ICollege } from '../Model/college';
 import { College } from '../Model/Colleges';
-
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-view-college',
   templateUrl: './view-college.component.html',
@@ -23,7 +23,11 @@ page=1;
   searchTerm:string;
   states:any[]=[];
   cities:any[]=[];
-  constructor(private service: CapService,private router: Router) { }
+  confirmClicked: boolean=true;
+  cancelClicked: boolean;
+  public popoverTitle:string="confirmation";
+  public popoverMessage:string="Are you sure to delete ??";
+  constructor(private service: CapService,private router: Router,private toastr:ToastrService) { }
 
   ngOnInit( ): void {
    this.service.viewColleges().subscribe(data=>this.CollegesList=data);
@@ -39,16 +43,31 @@ page=1;
 
   }
 
+  // deleteCollege(college:College,i){
+  //   // this.CollegesList.splice(i,1);
+  //   console.log(college)
+  //   if(confirm('Are sure you want to delete College')){
+  //     this.service.deleteCollege(college.collegeCode).subscribe(data=>data);
+  //     window.location.reload();
+  //     alert("College Deleted Successfully");
+  //     }
+  //     this.router.navigate(['viewCollege']);
+  // }
+
+
   deleteCollege(college:College,i){
     // this.CollegesList.splice(i,1);
-    console.log(college)
-    if(confirm('Are sure you want to delete College')){
-      this.service.deleteCollege(college.collegeCode).subscribe(data=>data);
-      window.location.reload();
-      alert("College Deleted Successfully");
+    if(this.confirmClicked){
+      // this.service.deleteCollege(college.collegeCode).subscribe(data=>data);
+      this.toastr.success('Deleted Successfully', 'College');
+      window.location.reload(); 
+      /* alert("College Deleted Successfully"); */ 
+       }
+     /*  this.router.navigate(['viewCollege']); */
+      if(this.cancelClicked){
+ 
       }
-      this.router.navigate(['viewCollege']);
-  }
+  } 
   
 
   updateCollege(clg){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CapService } from '../cap.service';
 import { Router } from '@angular/router';
 import { User } from '../Model/User';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,18 +14,17 @@ export class UserProfileComponent implements OnInit {
   user:User=new User();
 message:String;
 status:boolean;
-  constructor(private capService:CapService,private router:Router) { }
+  constructor(private capService:CapService,private router:Router,private toastr:ToastrService) { }
     
   editUser():any{
-   if( confirm("Are sure to Update Profile")){
+  
     this.capService.setUser(this.user).subscribe((data:any)=>{
       this.status=data;
       if(this.status)
         {
-          this.message="Successfully Updated!!!";
+          this.toastr.success('Updated Successfully...', 'Profile');
         }
     });
-  }
 }
 
   ngOnInit(): void {

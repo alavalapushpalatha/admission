@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CapService } from '../cap.service';
 import { User } from '../Model/User';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-login',
@@ -12,7 +13,7 @@ export class UserLoginComponent implements OnInit {
   message:string;
   status:Boolean;
   userDetails:User=new User();
-  constructor(private capService:CapService,private router:Router) { }
+  constructor(private capService:CapService,private router:Router,private toastr:ToastrService) { }
   onSubmit(loginForm:any){
     this.capService.loginUser(loginForm).subscribe((data:any)=>{
       this.status=data;
@@ -26,7 +27,7 @@ export class UserLoginComponent implements OnInit {
            sessionStorage.setItem('user',this.userDetails.name);
            console.log( sessionStorage.getItem('user'))
           });
-          this.message="Valid user";
+          this.toastr.success('Logged in Successfully', 'User');
           this.router.navigate(['/userHome']);
   
   

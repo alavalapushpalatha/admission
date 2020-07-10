@@ -7,14 +7,15 @@ import { ICollege } from './Model/college';
 import { College } from './Model/Colleges';
 import { Branches } from './Model/Branches';
 import { User } from './Model/User';
+import { ToastrService } from 'ngx-toastr';
  
 @Injectable({
   providedIn: 'root'
 })
 export class CapService {
   
-  constructor(private http: HttpClient,private router:Router) { }
-  private baseUrl = 'http://localhost:8080'; 
+  constructor(private http: HttpClient,private router:Router,private toastr:ToastrService) { }
+  private baseUrl = window["cfgApiBaseUrl"]; 
 
   login(login:Login):Observable<any> {
     return this.http.post(`${this.baseUrl}`+`/adminLogin`,login);
@@ -25,7 +26,8 @@ export class CapService {
     sessionStorage.removeItem('user')
     sessionStorage.removeItem('userType')
     sessionStorage.clear();
-    this.router.navigate(['/mainHome'])
+    this.toastr.success('Logged out Successfully ');
+    this.router.navigate(['/admission'])
   }
 
   contact:any;
@@ -52,13 +54,13 @@ register(user:any){
 
 
     }
-    return this.http.post("http://localhost:8080/register",input);
+    return this.http.post(`${this.baseUrl}`+`/register`,input);
   }
   getUser(){
     this.contact=localStorage.getItem("mobile");
     this.newcontact=parseInt(this.contact);
     console.log(this.newcontact);
-    return this.http.get("http://localhost:8080/profile?phoneNo="+this.newcontact)
+    return this.http.get(`${this.baseUrl}`+"/profile?phoneNo="+this.newcontact)
 
   }
 
@@ -66,13 +68,13 @@ register(user:any){
     this.contact=localStorage.getItem("mobile");
     this.newcontact=parseInt(this.contact);
     console.log(this.newcontact);
-    return this.http.get("http://localhost:8080/getUserName?phoneNo="+this.newcontact)
+    return this.http.get(`${this.baseUrl}`+"/getUserName?phoneNo="+this.newcontact)
 
   }
   setUser(user:User){
     
     console.log(user)
-    return this.http.put("http://localhost:8080/updateprofile",user);
+    return this.http.put(`${this.baseUrl}`+"/updateprofile",user);
 
   }
 
@@ -81,7 +83,7 @@ register(user:any){
     this.phoneNo = userCredentials.phone;
     let password = userCredentials.password;
     localStorage.setItem("mobile",this.phoneNo);
-    return this.http.get("http://localhost:8080/login?phoneNo="+this.phoneNo+"&password="+password);
+    return this.http.get(`${this.baseUrl}`+"/login?phoneNo="+this.phoneNo+"&password="+password);
   }
   passwordReset(info:any){
     this.phoneNo = info.mobile;
@@ -89,7 +91,7 @@ register(user:any){
     this.answer = info.answer;
     let password = info.password;
     
-     return this.http.put("http://localhost:8080/setpassword?phoneNo="+this.phoneNo+"&securityQuestion="+this.securityQuestion+"&answer="+this.answer+"&password="+password,1);
+     return this.http.put(`${this.baseUrl}`+"/setpassword?phoneNo="+this.phoneNo+"&securityQuestion="+this.securityQuestion+"&answer="+this.answer+"&password="+password,1);
    
   }
   
@@ -193,7 +195,7 @@ deleteCollege(collegeCode:String){
 
 
 viewColleges():any{
-  return this.http.get("http://localhost:8080/getAllcolleges");
+  return this.http.get(`${this.baseUrl}`+"/getAllcolleges");
 }
 
 viewpredictedColleges(contactNumber:string,value:string){
@@ -210,22 +212,22 @@ viewpredictedColleges(contactNumber:string,value:string){
       "phoneNo":parseInt(localStorage.getItem("mobile"))
     }
     console.log(input)
-    return this.http.post("http://localhost:8080/feedback", input);
+    return this.http.post(`${this.baseUrl}`+"/feedback", input);
 
   }
 
  getfeedback()
  {
-   return this.http.get("http://localhost:8080/getFeedback");
+   return this.http.get(`${this.baseUrl}`+"/getFeedback");
  }
  getuserData()
  {
-  return this.http.get("http://localhost:8080/getUserDetails");
+  return this.http.get(`${this.baseUrl}`+"/getUserDetails");
  }
 
 
  viewCollegesOnMarks(contactNumber:number){
-  return this.http.get("http://localhost:8080/viewM/"+contactNumber);
+  return this.http.get(`${this.baseUrl}`+"/viewM/"+contactNumber);
  }
 
 
@@ -236,43 +238,43 @@ viewpredictedColleges(contactNumber:string,value:string){
 
 
 // viewColleges(){
-//   return this.http.get("http://localhost:8080/getAllcolleges");
+//   return this.http.get("http://localhost:8081/getAllcolleges");
 // }
 
 viewAll(state:string,city:string,branch:string){
-  return this.http.get("http://localhost:8080/getAll/"+state+"/"+city+"/"+branch);
+  return this.http.get(`${this.baseUrl}`+"/getAll/"+state+"/"+city+"/"+branch);
   
 }
 viewAllByStateAndCity(state:string,city:string){
-  return this.http.get("http://localhost:8080/getAllByStateAndCity/"+state+"/"+city);
+  return this.http.get(`${this.baseUrl}`+"/getAllByStateAndCity/"+state+"/"+city);
   
 }
 viewAllByStateAndbranch(state:string,branch:string){
-  return this.http.get("http://localhost:8080/getAllByStateAndBranch/"+state+"/"+branch);
+  return this.http.get(`${this.baseUrl}`+"/getAllByStateAndBranch/"+state+"/"+branch);
   
 }
 viewAllByCityAndbranch(city:string,branch:string){
-  return this.http.get("http://localhost:8080/getAllByCityAndBranch/"+city+"/"+branch);
+  return this.http.get(`${this.baseUrl}`+"/getAllByCityAndBranch/"+city+"/"+branch);
   
 }
 viewAllByCity(city:string){
-  return this.http.get("http://localhost:8080/getAllByCity/"+city);
+  return this.http.get(`${this.baseUrl}`+"/getAllByCity/"+city);
   
 }
 viewAllBybranch(branch:string){
-  return this.http.get("http://localhost:8080/getAllByBranch/"+branch);
+  return this.http.get(`${this.baseUrl}`+"/getAllByBranch/"+branch);
   
 }
 getStates(){
-  return this.http.get("http://localhost:8080/getStates/");
+  return this.http.get(`${this.baseUrl}`+"/getStates/");
   
 }
 getCities(){
-  return this.http.get("http://localhost:8080/getCities/");
+  return this.http.get(`${this.baseUrl}`+"/getCities/");
   
 }
 viewAllByState(state:string){
-  return this.http.get("http://localhost:8080/getAllByState/"+state); 
+  return this.http.get(`${this.baseUrl}`+"/getAllByState/"+state); 
 }
 
 

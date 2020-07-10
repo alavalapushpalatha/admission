@@ -24,7 +24,7 @@ import { MainHomeComponent } from './main-home/main-home.component';
 
 
 const routes: Routes = [
-  {path : '',redirectTo: '/mainHome', pathMatch:'full'}, 
+  {path : '',redirectTo: '/admission', pathMatch:'full'}, 
   {path :'aboutUs', component: FooternavComponent},
   {path :'carousel', component:CorouselbarComponent},
   {path :'login', component:UserLoginComponent},
@@ -43,10 +43,10 @@ const routes: Routes = [
   {path :'allColleges', component:AllCollegesComponent,canActivate:[AuthGaurdService]},
   {path :'giveFeedback', component:GiveFeedbackComponent,canActivate:[AuthGaurdService]},
   {path :'userProfile', component:UserProfileComponent,canActivate:[AuthGaurdService]},
-  {path :'mainHome', component:MainHomeComponent},
+  {path :'admission', component:MainHomeComponent},
 
   
-  
+     
 ];
 
 @NgModule({

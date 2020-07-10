@@ -5,6 +5,7 @@ import { CapService } from '../cap.service';
 import { Router } from '@angular/router';
 import { College } from '../Model/Colleges';
 import { Branches } from '../Model/Branches';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-college',
@@ -39,7 +40,7 @@ export class UpdateCollegeComponent implements OnInit {
   editForm: FormGroup;
   form: FormGroup;
 
-  constructor(private _collegeService: CapService, private router: Router,private formBuilder:  FormBuilder) {   }
+  constructor(private _collegeService: CapService, private router: Router,private formBuilder:  FormBuilder,private toastr:ToastrService) {   }
 
   onSubmit() {  }
 
@@ -82,14 +83,14 @@ export class UpdateCollegeComponent implements OnInit {
       contactNumber:form.value.contactNumber,
       departments:this.departments
     };
-    if(confirm('Are sure you want to Update College')){
-     
+   
       
     this._collegeService.updateCollege(collegeObj).subscribe(
       responseCreateStatus=>{
         this.status = responseCreateStatus;
         if(this.status){
-          alert("College Updated Successfully");
+          // alert("College Updated Successfully");
+          this.toastr.success('Updated Successfully...', 'College');
           this.router.navigate(['viewCollege']);
         }
       },
@@ -97,7 +98,6 @@ export class UpdateCollegeComponent implements OnInit {
         this.errorMsg = responseCreateError;
       }
     );
-  }
 }
 
   collegeToUpdate:College=new College();

@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { College } from '../Model/Colleges';
 import { Branches } from '../Model/Branches';
 import { ICollege } from '../Model/college';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-college',
@@ -34,7 +35,7 @@ branches:Branches=new Branches();
 ];
 //  departments:IDepartment[];
 
-  constructor(private _collegeService: CapService, private router: Router) { }
+  constructor(private _collegeService: CapService, private router: Router,private toastr:ToastrService) { }
 
 addColleges(){
   
@@ -46,8 +47,7 @@ addColleges(){
   this._collegeService.addCollege(this.college).subscribe(data=>{data
     
 if(!data){
-alert("College Already added")
-}
+  this.toastr.success('Added Successfully', 'College');}
     });
 
 }
@@ -95,10 +95,11 @@ alert("College Already added")
     
     this._collegeService.create(collegeObj).subscribe(data=>{
       if(!data){
-       alert("College with Code "+ form.value.collegeId+" Already Added !!")
+      //  alert("College with Code "+ form.value.collegeId+" Already Added !!")
+       this.toastr.info('Already Existed with code'+form.value.collegeId,'College')
       }
       else{
-        alert("College Added Successfully");
+        this.toastr.success('Added Successfully', 'College');
         this.router.navigate(['viewCollege']);
       }
     });

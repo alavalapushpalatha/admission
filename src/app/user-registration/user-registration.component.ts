@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CapService } from '../cap.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-registration',
@@ -11,7 +12,7 @@ export class UserRegistrationComponent implements OnInit {
   
   status:Boolean;
   message:string;
-  constructor(private capService:CapService,private router:Router) { }
+  constructor(private capService:CapService,private router:Router,private toastr:ToastrService) { }
   
   onSubmit(registationForm:any){
     
@@ -23,7 +24,7 @@ export class UserRegistrationComponent implements OnInit {
         /*   this.router.navigate(['/home']); */
         console.log(this.status);
         this.message="Registered Successfully..."
-        alert("Successfully registered")
+        this.toastr.success('Registered Successfully', 'User');
         this.router.navigate(['/login']);
         }
         else{

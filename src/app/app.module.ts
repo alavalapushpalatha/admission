@@ -40,6 +40,8 @@ import { ExportAsModule } from 'ngx-export-as';
 import { ExportDirective } from './_directives/export.directive';
 import { MainHomeComponent } from './main-home/main-home.component';
 import { HomeNavComponent } from './home-nav/home-nav.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover'; 
+import { ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,14 @@ import { HomeNavComponent } from './home-nav/home-nav.component';
     MatPaginatorModule,
     DataTableModule,
     ExportAsModule,
+    ToastrModule.forRoot({
+      timeOut: 9000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'
+    }),
   ],
   bootstrap: [AppComponent]
 })
